@@ -1,0 +1,28 @@
+<fieldset class="build">
+    <legend>Build</legend>
+    <div class="field has-addons select-group">
+        <div class="control is-expanded">
+            <span class="select is-small is-fullwidth">
+                <select data-label="option" name="construct">
+                    <option value="">&ndash; option &ndash;</option>
+                    <option value="road">Road</option>
+                    <option value="settlement">Settlement</option>
+                    <option value="city">City</option>
+                </select>
+            </span>
+        </div>
+        <div class="control is-expanded">
+            <span class="select is-small is-fullwidth">
+                <select data-label="hex" class="hex-listing" name="hex"></select>
+            </span>
+        </div>
+        <div class="control is-expanded">
+            <span class="select is-small is-fullwidth">
+                <select data-label="node" name="location" class="node-listing"></select>
+            </span>
+        </div>
+        <div class="control">
+            <button data-handler="handleBuild" class="button is-small has-background-light">Build</button>
+        </div>
+    </div>
+</fieldset>

@@ -1,0 +1,47 @@
+{% load static %}
+<p class="content">
+    <a class="button is-small is-info" target="_blank" rel="noreferrer noopener" href="https://www.catan.com/service/game-rules">Official Catan rules</a>
+</p>
+<table class="table is-bordered" style="float: right">
+    <tbody>
+    <tr>
+        <th>Road</th>
+        <td class="nowrap">🌲 🧱</td>
+    </tr>
+    <tr>
+        <th>Dev Card</th>
+        <td class="nowrap">🗿 🌽 🐑</td>
+    </tr>
+    <tr>
+        <th>Settlement</th>
+        <td class="nowrap">🌲 🧱 🌽 🐑</td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td class="nowrap">🌽 🌽 🗿 🗿 🗿</td>
+    </tr>
+    </tbody>
+</table>
+
+<p class="content">
+    Use the hex-shaped information helper to reference vertices and edges (collectively referred to
+    as nodes).
+</p>
+<p class="content">
+    Green letters refer to the hex vertices where you place cities and settlements. Red letter refer to
+    edges where roads are built. Note that there are potential multiple ways to refer to a node.<br>
+</p>
+<p class="content">
+    For instance, in the image below, the left-most red settlement could have been placed by indicating
+    <kbd class="tag is-info is-light">13b</kbd>,
+    <kbd class="tag is-info is-light">17a</kbd>, or
+    <kbd class="tag is-info is-light">14e</kbd>.
+</p>
+<p class="content">
+    Similarly, the road attached to that settlement could have been place by indication either
+    <kbd class="tag is-info is-light">17a</kbd> or
+    <kbd class="tag is-info is-light">14d</kbd><br>
+</p>
+<p class="content">
+    <img src="{% static "img/settlers/help-ref.png" %}" alt="">
+</p>

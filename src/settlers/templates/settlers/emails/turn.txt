@@ -1,0 +1,7 @@
+Hello, {{ user }}
+
+You might be interested to know that {{ player }} has played.
+
+You can view the game at: https://{{ site.domain }}{{ game.get_absolute_url }}
+
+Good luck!

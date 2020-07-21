@@ -1,0 +1,14 @@
+{% extends "settlers/emails/base.html" %}
+
+{% block title %}Settlers game #{{ game.id }} update{% endblock title %}
+
+{% block summary %}
+{{ player }} has played a turn.
+{% endblock summary %}
+
+{% block detail %}
+You might be interested to know that {{ player }} has played.
+{% endblock detail %}
+
+{% block link %}https://{{ site.domain }}{{ game.get_absolute_url }}{% endblock link %}
+{% block link_label %}View Game {{ game.id }}{% endblock link_label %}

@@ -1,0 +1,20 @@
+{
+    "tradeOffers": {
+        "turn": {"roll": 4, "color": "red", "actions": []},
+        "offers": [
+        {
+            "offers": [
+            {"resource": "O", "count": 1 }],
+            "wants": [{"resource": "B", "count": 1}]
+        },
+        {
+            "offers": [{"resource": "T", "count": 1}],
+            "wants": [{"resource": "B", "count": 1}]
+        }],
+        "created": "2020-05-16T01:44:35.696861+00:00",
+        "responses": [
+            {"color": "blue", "accepted": true, "offers": [0], "created": "2020-05-16T07:50:29.048Z"}
+        ],
+        "expires": "2020-05-16T13:44:35.696Z"
+    }
+}

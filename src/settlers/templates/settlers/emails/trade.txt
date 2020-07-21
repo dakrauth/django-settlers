@@ -1,0 +1,7 @@
+Hello, {{ user }}
+
+You might be interested to know that {{ player }} offered a trade.
+
+You can view the offers at: https://{{ site.domain }}{{ game.get_absolute_url }}
+
+Good luck!

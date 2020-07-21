@@ -1,0 +1,96 @@
+<fieldset class="develop">
+    <legend>Development Cards</legend>
+    <div class="development-buy" style="margin-bottom: 1em">
+        <div class="field">
+            <div class="control">
+                <button class="development-buy-btn button has-background-light is-small">Buy</button>
+            </div>
+        </div>
+    </div>
+    <div class="development-play">
+        <div class="field">
+            <div class="control">
+                <span class="select is-small">
+                    <select data-label="card" name="development-card"></select>
+                </span>
+            </div>
+        </div>
+        <div class="development-RB hidden">
+            <!-- Place 2 new roads as if you had just built them -->
+            <div class="field has-addons select-group">
+                <div class="control is-expanded">
+                    <span class="select is-small is-fullwidth">
+                        <select data-label="hex 1" class="hex-listing" name="rbHex1"></select>
+                    </span>
+                </div>
+                <div class="control is-expanded">
+                    <span class="select is-small is-fullwidth">
+                        <select data-label="node 1" class="node-listing" name="rbNode1"></select>
+                    </span>
+                </div>
+                <div class="control is-expanded">
+                    <span class="select is-small is-fullwidth">
+                        <select data-label="hex 2" class="hex-listing" name="rbHex2"></select>
+                    </span>
+                </div>
+                <div class="control is-expanded">
+                    <span class="select is-small is-fullwidth">
+                        <select data-label="node 2" class="node-listing" name="rbNode2"></select>
+                    </span>
+                </div>
+                <div class="control">
+                    <button data-handler="handleRB" class="button is-small has-background-light">Build</button>
+                </div>
+            </div>
+        </div> <!-- RB -->
+        <div class="development-KN  hidden">
+            <!-- Move the robber. Steal 1 resource from the owner of a settlement or city adjacent to the robber's new hexMove the robber. Steal 1 resource from the owner of a settlement or city adjacent to the robber's new hex -->
+            <div class="field has-addons select-group">
+                <div class="control is-expanded">
+                    <span class="select is-small is-fullwidth">
+                        <select data-label="hex" name="knHex" class="hex-listing"></select>
+                    </span>
+                </div>
+                <div class="control is-expanded">
+                    <span class="select is-small is-fullwidth">
+                        <select data-label="victim" name="knVictim" class="player-listing"></select>
+                    </span>
+                </div>
+                <div class="control">
+                    <button data-handler="handleKN" class="button is-small is-warning">Attack</button>
+                </div>
+            </div>
+        </div> <!-- KN -->
+        <div class="development-MP hidden">
+            <!-- When you place this card, annouce 1 type of resource. All other players must give you all of the resourcesof that type -->
+            <div class="field has-addons select-group">
+                <div class="control">
+                    <span class="select is-small">
+                        <select data-label="resource" name="monopolize" class="resource-listing"></select>
+                    </span>
+                </div>
+                <div class="control">
+                    <button data-handler="handleMP" class="button is-small is-warning">Monopolize</button>
+                </div>
+            </div>
+        </div> <!-- MP -->
+        <div class="development-YP  hidden">
+            <!-- Take any 2 resources from the bank. Add them to your hand. They can be 2 of the same resource or 2 different resources -->
+            <div class="field has-addons select-group">
+                <div class="control is-expanded">
+                    <span class="select is-small is-fullwidth">
+                        <select data-label="resource 1" name="yp1" class="resource-listing"></select>
+                    </span>
+                </div>
+                <div class="control is-expanded">
+                    <span class="select is-small is-fullwidth">
+                        <select data-label="resource 2" name="yp2" class="resource-listing"></select>
+                    </span>
+                </div>
+                <div class="control">
+                    <button data-handler="handleYP" class="button is-small has-background-light">Procure</button>
+                </div>
+            </div>
+        </div> <!-- YP -->
+    </div> <!-- development-play -->
+</fieldset>

@@ -1,0 +1,2 @@
+include README.md
+recursive-include src/settlers/ *.html *.txt *.js *.svg *.png *.css *.map *.sass *.json *.ico

@@ -1,0 +1,43 @@
+{% extends "settlers/base.html" %}
+{% load static %}
+{% block settlers_content %}
+    <div class="app container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="notification {% if message.tags %}is-{{ message.tags }}{% endif %}">
+            <button class="delete"></button>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <canvas id="app" width="660" height="690"></canvas>
+        <div class="content">
+            <p class="has-text-centered">
+                <button id="randomize" class="button is-info is-small">Randomize</button>
+            </p>
+        </div>
+        <div>
+            <form method="post">
+                <fieldset>
+                    <legend>Start a new game</legend>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="content">
+                            <p class="has-text-centered">
+                                <input class="button is-small is-primary" type="submit">
+                            </p>
+                        </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock settlers_content %}
+{% block settlers_application_javascript %}
+    {{ status|json_script:"app-status" }}
+    <script>
+        const onRandomize = function(bd) {
+            $('#id_game').value = bd.toJSON();
+        }
+        App.random(onRandomize);
+    </script>
+{% endblock settlers_application_javascript %}

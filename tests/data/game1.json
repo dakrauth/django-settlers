@@ -1,0 +1,102 @@
+{
+    "init": {
+        "name": "standard34",
+        "terrain": {"D": 1, "T": 4, "O": 3, "B": 3, "G": 4, "S": 4},
+        "constructs": {"city": 4, "settlement": 5, "road": 15},
+        "resourceCards": {"O": 19, "G": 19, "T": 19, "S": 19, "B": 19},
+        "developmentCards": {"KN": 14, "RB": 2, "MP": 2, "YP": 2, "VP": 5},
+        "grid": "X0X0W0W0W0W0X0X0W0TBS8B3W0X0X0W0S9O3T4GCW0W0G5BAS8O5D0W0X0W0T6G2BBS9W0X0W0O4T6GAW0X0X0X0W0W0W0W0X0",
+        "chits": [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12],
+        "harbors": [
+            {"hex": 1, "edge": "f", "resource": "B", "id": 1},
+            {"hex": 2, "edge": "a", "resource": "3", "id": 2},
+            {"hex": 4, "edge": "e", "resource": "T", "id": 3},
+            {"hex": 7, "edge": "a", "resource": "O", "id": 4},
+            {"hex": 12, "edge": "b", "resource": "3", "id": 5},
+            {"hex": 13, "edge": "e", "resource": "3", "id": 6},
+            {"hex": 16, "edge": "c", "resource": "3", "id": 7},
+            {"hex": 17, "edge": "d", "resource": "G", "id": 8},
+            {"hex": 18, "edge": "c", "resource": "S", "id": 9}
+        ]
+    },
+    "players": [
+        { "id": 1, "name": "Ron", "color": "red" },
+        { "id": 2, "name": "Harry", "color": "blue" },
+        { "id": 3, "name": "Ginny", "color": "orange" },
+        { "id": 4, "name": "Hermione", "color": "white"}
+    ],
+    "turns": [
+        {
+            "roll": null,
+            "color": "red",
+            "actions": [
+                {"type": "settlement", "hex": 13, "node": "a"},
+                {"type": "road", "hex": 13, "node": "a"}
+            ],
+            "played": "2020-05-14T00:33:06.925028+00:00"
+        },
+        {
+            "roll": null,
+            "color": "blue",
+            "actions": [
+                {"type": "settlement", "hex": 6, "node": "a"},
+                {"type": "road", "hex": 6, "node": "f"}
+            ],
+            "played": "2020-05-14T00:35:03.672681+00:00"
+        },
+        {
+            "roll": null,
+            "color": "orange",
+            "actions": [
+                {"type": "settlement", "hex": 15, "node": "a"},
+                {"type": "road", "hex": 15, "node": "a"}
+            ],
+            "played": "2020-05-14T00:46:09.513751+00:00"
+        },
+        {
+            "roll": null,
+            "color": "white",
+            "actions": [
+                {"type": "settlement", "hex": 1, "node": "d"},
+                {"type": "road", "hex": 4, "node": "b"}
+            ],
+            "played": "2020-05-14T00:47:47.520753+00:00"
+        },
+        {
+            "roll": null,
+            "color": "white",
+            "actions": [
+                {"type": "settlement", "hex": 14, "node": "d"}, 
+                {"type": "road", "hex": 18, "node": "f"}
+            ],
+            "played": "2020-05-14T02:04:19.551645+00:00"
+        },
+        {
+            "roll": null,
+            "color": "orange",
+            "actions": [
+                {"type": "settlement", "hex": 6, "node": "c"},
+                {"type": "road", "hex": 11, "node": "f"}
+            ],
+            "played": "2020-05-14T02:09:17.572062+00:00"
+        },
+        {
+            "roll": null,
+            "color": "blue",
+            "actions": [
+                {"type": "settlement", "hex": 15, "node": "d"},
+                {"type": "road", "hex": 19, "node": "f"}
+            ],
+            "played": "2020-05-14T02:11:07.486686+00:00"
+        },
+        {
+            "roll": null,
+            "color": "red",
+            "actions": [
+                {"type": "settlement", "hex": 5, "node": "c"},
+                {"type": "road", "hex": 5, "node": "c"}
+            ],
+            "played": "2020-05-14T03:01:08.849242+00:00"
+        }
+    ]
+}

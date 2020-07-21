@@ -1,0 +1,68 @@
+<fieldset class="trade sync">
+    <legend>Trade</legend>
+    <div class="columns">
+        <div class="column has-text-right">Trade with:</div>
+        <div class="column"><label><input type="radio" name="tradeBy" value="bank"> Bank</label></div>
+        <div class="column"><label><input type="radio" name="tradeBy" value="harbor"> Harbor</label></div>
+        <div class="column"><label><input type="radio" name="tradeBy" value="player"> Player</label></div>
+    </div>
+    <div id="non-player-trade" class="hidden">
+        <div class="field has-addons select-group">
+            <div class="control is-expanded">
+                <span class="select is-small is-fullwidth">
+                    <select data-label="resource" name="tradeOffers" class="">
+                        <option value="">&ndash; resource &ndash;</option>
+                        <option value="S">Sheep</option>
+                        <option value="O">Ore</option>
+                        <option value="T">Tree</option>
+                        <option value="G">Grain</option>
+                        <option value="B">Brick</option>
+                    </select>
+                </span>
+            </div>
+            <div class="control is-expanded">
+                <span class="select is-small is-fullwidth">
+                    <select data-label="for" name="tradeWants" class="">
+                        <option value="">&ndash; for &ndash;</option>
+                        <option value="S">Sheep</option>
+                        <option value="O">Ore</option>
+                        <option value="T">Tree</option>
+                        <option value="G">Grain</option>
+                        <option value="B">Brick</option>
+                    </select>
+                </span>
+            </div>
+            <div class="control">
+                <button data-handler="handleTrade" class="button is-small has-background-light">Trade</button>
+            </div>
+        </div>
+    </div>
+    <div id="player-trade" class="hidden">
+        <div class="field has-addons">
+            <div class="control">
+                <a class="button is-warning is-small"><i class="far fa-question-circle"></i></a>
+            </div>
+            <div class="control is-expanded">
+                <input class="input is-small" name="syncOffers" type="text" placeholder="You give (1 sheep, 1 ore)">
+            </div>
+            <div class="control">
+                <span class="select is-small">
+                    <select data-label="for" name="syncTradePlayer" class="">
+                        <option value="">&ndash; player &ndash;</option>
+                        <option value="blue">blue</option>
+                        <option value="orange">orange</option>
+                        <option value="white">white</option>
+                        <option value="red">red</option>
+                    </select>
+                </span>
+            </div>
+            <div class="control is-expanded">
+                <input class="input is-small" type="text" name="syncWants" placeholder="gives you (1 brick)">
+            </div>
+            <div>
+                <button class="button is-small has-background-light">Trade</button>
+            </div>
+        </div>
+    </div>
+    <div id="trade-offers" class="content"></div>
+</fieldset>

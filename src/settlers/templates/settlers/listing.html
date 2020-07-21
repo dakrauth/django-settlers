@@ -1,0 +1,19 @@
+{% extends "travel/base.html" %}
+{% block travel_content %}
+    <h1>Settlers Games</h1>
+    <p>
+        <a class="btn btn-xs btn-primary" href="{% url 'settlers:new' %}">New</a>
+        <a class="btn btn-xs btn-success" href="{% url 'settlers:detail' 1 %}">Demo</a>
+    </p>
+    <ul>{% for g in games %}
+        {% if g.id != 1 %}
+        <li>
+            <a class="" href="{{ g.get_absolute_url }}">Game #{{ g.id }}</a> |
+            {% for player in g.game.players %}
+            {{ player.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </li>
+    {% endif %}
+    {% endfor %}
+    </ul>
+{% endblock travel_content %}

@@ -1,0 +1,42 @@
+<fieldset>
+    <legend>Initial Setup</legend>
+    <div class="field has-addons select-group">
+        <div class="control">
+            <a class="button is-static is-small setup-label">Settlement</a>
+        </div>
+        <div class="control is-expanded">
+            <span class="select is-small is-fullwidth">
+                <select data-label="hex" class="hex-listing" name="settlementHex"></select>
+            </span>
+        </div>
+        <div class="control is-expanded">
+            <span class="select is-small is-fullwidth">
+                <select data-label="node" name="settlementLocation" class="node-listing"></select>
+            </span>
+        </div>
+        <div class="control">
+            <button data-handler="handleInit" class="button is-small has-background-light">Add</button>
+        </div>
+    </div>
+    <div class="field has-addons select-group">
+        <div class="control">
+            <a class="button is-static is-small  setup-label">Road</a>
+        </div>
+        <div class="control is-expanded">
+            <span class="select is-small is-fullwidth">
+                <select data-label="hex" class="hex-listing" name="roadHex"></select>
+            </span>
+        </div>
+        <div class="control is-expanded">
+            <span class="select is-small is-fullwidth">
+                <select data-label="node" name="roadLocation" class="node-listing"></select>
+            </span>
+        </div>
+        <div class="control">
+            <button data-handler="handleInit" class="button is-small has-background-light">Add</button>
+        </div>
+    </div>
+</fieldset>
+<p class="content has-text-centered">
+    <button id="save-init" class="button is-small is-primary">Save</button>
+</p>
