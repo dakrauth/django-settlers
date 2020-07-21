@@ -1,4 +1,5 @@
 const CanvasView = (function() {
+    // This file is riddled with magic numbers and values. Yay!
 
     // The parametric equation for a circle is
     //     x = cx + r * cos(𝚹)
@@ -19,18 +20,15 @@ const CanvasView = (function() {
             );
         }
         atDistanceFrom(d) {
-            let [a, b] = [this.a, this.b];
             let dir = 1;
             if(d < 0) {
                 dir = -1;
                 d *= -1;
             }
-            const length = this.length;
-            const pt = point(
-                this.a.x - dir * (d * (this.a.x - this.b.x)) / length,
-                this.a.y - dir * (d * (this.a.y - this.b.y)) / length
+            return point(
+                this.a.x - dir * (d * (this.a.x - this.b.x)) / this.length,
+                this.a.y - dir * (d * (this.a.y - this.b.y)) / this.length
             );
-            return pt;
         }
         get center() {
             const length = this.length;
@@ -57,13 +55,12 @@ const CanvasView = (function() {
 
             let ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
             let ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
-
             return point(x1 + ua * (x2 - x1), y1 + ua * (y2 - y1));
         }
     }
 
 
-    const hexDimsFactory = function(n, i) {
+    const hexDimensionsFactory = function(n, i) {
         const C = n * Math.sin(Math.PI / 3);
         const offsets1 = [
             [0, -n], [C, -n / 2], [C, n / 2],
@@ -130,7 +127,6 @@ const CanvasView = (function() {
     class CanvasView {
         constructor(canvas, config) {
             this.config = config;
-            // this.calc = makeHexCalc(config.sideLength);
             this.canvas = canvas;
             this.ctx = this.canvas.getContext('2d');
             this.ctx.font = '13pt Calibri';
@@ -146,7 +142,7 @@ const CanvasView = (function() {
                 xlarge: `30pt ${this.fontFamily}`
             }
             this.dims = [];
-            this.hexFactory = hexDimsFactory(config.sideLength, 3);
+            this.hexFactory = hexDimensionsFactory(config.sideLength, 3);
             for(let j = 0; j < config.boardHeight; ++j) {
                 let row = [];
                 this.dims.push(row);
@@ -562,9 +558,7 @@ const CanvasView = (function() {
             let p2 = point(p1.x, p1.y + height + N + 1);
             ctx.strokeStyle = '#aaa';
             ctx.lineWidth = 1;
-
             ctx.clearRect(p1.x - 2, p1.y - 2, 4 + width * 5 + N * 5, 4 + height * 2);
-            // ctx.strokeRect(p1.x - 2, p1.y - 2, 4 + width * 5 + N * 5, 4 + height * 2);
 
             const items = [player.resources.toArray(), player.devCards.toArray()];
             for(const [k, v] of items.flat()) {
@@ -595,17 +589,14 @@ const CanvasView = (function() {
             ctx.restore();
         }
         renderRoad(hex, edge, color, isLongest) {
-            // console.log(`Drawing road ${hex.id} ${edge} ${color}`);
             const dims = this.hexDims(hex);
             this.drawRoad(dims.points, edge, color, isLongest);
         }
         renderSettlement(hex, vertex, color) {
-            // console.log(`Drawing settlement ${hex.id} ${vertex} ${color}`);
             const dims = this.hexDims(hex);
             this.drawSettlement(dims.points[Const.nodeIndex[vertex]], color);
         }
         renderCity(hex, vertex, color) {
-            // console.log(`Drawing city ${hex.id} ${vertex} ${color}`);
             const dims = this.hexDims(hex);
             this.drawCity(dims.points[Const.nodeIndex[vertex]], color);
         }

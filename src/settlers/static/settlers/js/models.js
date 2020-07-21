@@ -1,4 +1,5 @@
 const [Board, Game, GameException] = (function() {
+
     class GameException {
         constructor(message, data) {
             this.message = message;
@@ -46,11 +47,9 @@ const [Board, Game, GameException] = (function() {
             this.id = ++nodeId;
             this.color  = null;
             this.hexes = [];
-            //this.values = [];
         }
         addHex(hex, node) {
             this.hexes.push(hex instanceof Hex ? hex.id : hex);
-            // this.values.push({hex: hex.id, node: node});
         }
     }
 
@@ -187,11 +186,11 @@ const [Board, Game, GameException] = (function() {
                 let hex = this.hexIds[harbor.hex];
                 let vertex = this.getVertex(harbor.hex, harbor.edge)
                 vertex.harbor = harbor.id;
-                // harbor.vertices = [vertex.id];
+                harbor.vertices = [vertex.id];
 
                 vertex = this.getVertex(harbor.hex, Const.nextNode[harbor.edge]);
                 vertex.harbor = harbor.id;
-                // harbor.vertices.push(vertex.id);
+                harbor.vertices.push(vertex.id);
             }
         }
         randomize(layout) {
