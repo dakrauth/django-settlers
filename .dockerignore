@@ -1,0 +1,11 @@
+.DS_Store
+.git
+.coverage
+.dockerignore
+.gitignore
+dist
+build
+docs
+venv
+.tox
+.pytest_cache

@@ -207,6 +207,7 @@ const defaultConfig = {
 const Layouts = {
     standard34: {
         name: "standard34",
+        pointsToWin: 10,
         terrain: {D: 1, T: 4, O: 3, B: 3, G: 4, S: 4},
         constructs: {city: 4, settlement: 5, road: 15},
         resourceCards: {O: 19, G: 19, T: 19, S: 19, B: 19},
@@ -235,6 +236,7 @@ const Layouts = {
     },
     standard56: {
         name: "standard56",
+        pointsToWin: 10,
         terrain: {D: 2, T: 6, O: 5, B: 5, G: 6, S: 6},
         constructs: {city: 4, settlement: 5, road: 15},
         resourceCards: {O: 24, G: 24, T: 24, S: 24, B: 24},
@@ -374,3 +376,11 @@ const Purchase = (function() {
         }
     });
 })();
+
+class GameException {
+    constructor(message, data) {
+        this.message = message;
+        console.error(message, data);
+    }
+}
+

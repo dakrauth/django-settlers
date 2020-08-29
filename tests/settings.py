@@ -1,13 +1,15 @@
-import os, sys
+import sys
+from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).parent
 
 ALLOWED_HOSTS = []
 AUTH_PASSWORD_VALIDATORS = []
 DEBUG = True
 LANGUAGE_CODE = 'en-us'
-ROOT_URLCONF = 'foo.urls'
-SECRET_KEY = 'ach%jqf=-bf4aqijof^ikqn8te(gh^2chhmqh39nh)ba^twn^1'
+LOGIN_URL = '/admin/login/'
+ROOT_URLCONF = 'urls'
+SECRET_KEY = 'supersecretsettlerskey!!'
 STATIC_URL = '/static/'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -16,7 +18,7 @@ USE_TZ = True
 
 DATABASES = {'default': {
     'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': ':memory:' if 'pytest' in sys.argv else 'catan.sqlite3',
+    'NAME': ':memory:' if 'pytest' in sys.argv else 'settlers.sqlite3',
 }}
 
 INSTALLED_APPS = [
@@ -26,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'settlers'
 ]
 
 MIDDLEWARE = [
@@ -40,7 +43,7 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

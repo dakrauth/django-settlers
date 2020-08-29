@@ -58,7 +58,12 @@ const App = (function(){
             $('.robber-hex').addEventListener('change', this.handleRobberHexChange.bind(this));
             $('select[name=development-card]').addEventListener('change', e => {
                 let value = e.target.value;
-                Utils.show('.development-' + value);
+                if(value === 'VP') {
+                    this.playVictoryPoint();
+                }
+                else {
+                    Utils.show('.development-' + value);
+                }
             });
 
             $$('input[name="tradeBy"]').forEach(el => {
@@ -392,6 +397,12 @@ const App = (function(){
             if(this.tradeOffers.length) {
                 form.trade.value = JSON.stringify(this.tradeOffers);
             }
+
+            const points = this.game.pointsFor(this.activePlayer);
+            if(points.grandTotal >= this.game.pointsToWin) {
+                this.currentTurn.actions.push({type: "win", points: points.grandTotal});
+            }
+
             form.turn.value = JSON.stringify(this.currentTurn);
             form.submit();
         }
@@ -458,6 +469,14 @@ const App = (function(){
             el.checked = false;
             this.redraw();
         }
+        playVictoryPoint() {
+            const points = this.game.pointsFor(this.activePlayer);
+            if(points.grandTotal < this.game.pointsToWin) {
+                Utils.showAlert('You do not have enough points to win.')
+            }
+
+            this.currentTurn.actions.push({"type": "play", "card": "VP"});
+        }
         playDevelopment(card, data) {
             if(this.currentTurn.actions.filter(e => e['Play']).length) {
                 Utils.showAlert('Play only 1 development card per turn');
@@ -496,14 +515,11 @@ const App = (function(){
                 victim: data.knVictim
             });
         }
-        handleYP(data, elements) {
-            this.playDevelopment('YP', data);
-        }
         handleMP(data, elements) {
             this.playDevelopment('MP', data)
         }
         handleVP(data, elements) {
-
+            this.activePlayer;
         }
         handleDevelopmentBuy(evt) {
             let player = this.activePlayer;

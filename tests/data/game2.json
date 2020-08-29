@@ -1,0 +1,756 @@
+{
+    "init":
+    {
+        "grid": "X0X0W0W0W0W0X0X0W0TBSCG9W0X0X0W0B4O6B5SAW0W0D0T3GBT4G8W0X0W0B8S9OAS3W0X0W0O5G2T6W0X0X0X0W0W0W0W0X0",
+        "harbors": [
+            {"hex": 1, "edge": "f", "resource": null},
+            {"hex": 2, "edge": "a", "resource": "B"},
+            {"hex": 4, "edge": "e", "resource": "O"},
+            {"hex": 7, "edge": "a", "resource": null},
+            {"hex": 12, "edge": "b", "resource": "S"},
+            {"hex": 13, "edge": "e", "resource": "G"},
+            {"hex": 16, "edge": "c", "resource": null},
+            {"hex": 17, "edge": "d", "resource": null},
+            {"hex": 18, "edge": "c", "resource": "T"}],
+        "resourceCards": {"O": 19, "G": 19, "T": 19, "S": 19, "B": 19},
+        "developmentCards": {"KN": 14, "RB": 2, "MP": 2, "YP": 2, "VP": 5},
+        "specialtyCards": {"LR": 1, "LA": 1},
+        "constructs": {"city": 4, "settlement": 5, "road": 15},
+        "robber": 8
+    },
+    "turns": [
+    {
+        "roll": null,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 9,
+            "node": "a"
+        },
+        {
+            "type": "road",
+            "hex": 9,
+            "node": "a"
+        }],
+        "played": "2020-04-18T04:07:09.963685+00:00"
+    },
+    {
+        "roll": null,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 11,
+            "node": "f"
+        },
+        {
+            "type": "road",
+            "hex": 11,
+            "node": "e"
+        }],
+        "played": "2020-04-18T04:07:09.963701+00:00"
+    },
+    {
+        "roll": null,
+        "color": "red",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 17,
+            "node": "a"
+        },
+        {
+            "type": "road",
+            "hex": 17,
+            "node": "a"
+        }],
+        "played": "2020-04-18T04:07:09.963707+00:00"
+    },
+    {
+        "roll": null,
+        "color": "red",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 19,
+            "node": "a"
+        },
+        {
+            "type": "road",
+            "hex": 19,
+            "node": "f"
+        }],
+        "played": "2020-04-18T04:07:09.963711+00:00"
+    },
+    {
+        "roll": null,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 6,
+            "node": "f"
+        },
+        {
+            "type": "road",
+            "hex": 6,
+            "node": "f"
+        }],
+        "played": "2020-04-18T04:07:09.963715+00:00"
+    },
+    {
+        "roll": null,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 12,
+            "node": "f"
+        },
+        {
+            "type": "road",
+            "hex": 11,
+            "node": "a"
+        }],
+        "played": "2020-04-18T04:07:09.963719+00:00"
+    },
+    {
+        "roll": 3,
+        "color": "blue",
+        "actions": [],
+        "played": "2020-04-18T22:30:19.160742+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 6,
+            "node": "a"
+        }],
+        "played": "2020-04-18T23:17:44.790733+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "red",
+        "actions": [],
+        "played": "2020-04-18T23:50:09.394466+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 7,
+            "node": "e"
+        },
+        {
+            "type": "settlement",
+            "hex": 7,
+            "node": "f"
+        },
+        {
+            "type": "road",
+            "hex": 9,
+            "node": "b"
+        }],
+        "played": "2020-04-19T01:22:47.539685+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "orange",
+        "actions": [
+        {
+            "hex": 9,
+            "victim": "blue",
+            "resource": "T",
+            "type": "robber"
+        }],
+        "played": "2020-04-19T02:28:15.415452+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "red",
+        "actions": [
+        {
+            "type": "robber",
+            "losses": [],
+            "hex": 10,
+            "victim": "orange",
+            "resource": "O"
+        }],
+        "played": "2020-04-19T08:37:08.939154+00:00"
+    },
+    {
+        "roll": 3,
+        "color": "blue",
+        "actions": [],
+        "played": "2020-04-19T16:29:22.864883+00:00"
+    },
+    {
+        "roll": 9,
+        "color": "orange",
+        "actions": [],
+        "played": "2020-04-20T00:27:28.381668+00:00"
+    },
+    {
+        "roll": 5,
+        "color": "red",
+        "actions": [
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "S",
+            "wants": "B"
+        },
+        {
+            "type": "road",
+            "hex": 13,
+            "node": "c"
+        }],
+        "played": "2020-04-21T01:07:29.007573+00:00"
+    },
+    {
+        "roll": 5,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 10,
+            "node": "d"
+        },
+        {
+            "type": "road",
+            "hex": 10,
+            "node": "c"
+        }],
+        "played": "2020-04-21T04:10:04.697560+00:00"
+    },
+    {
+        "roll": 10,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 2,
+            "node": "b"
+        }],
+        "played": "2020-04-21T04:12:03.584077+00:00"
+    },
+    {
+        "roll": 3,
+        "color": "red",
+        "actions": [],
+        "played": "2020-04-21T04:25:09.582030+00:00"
+    },
+    {
+        "roll": 11,
+        "color": "blue",
+        "actions": [],
+        "played": "2020-04-21T04:48:05.024440+00:00"
+    },
+    {
+        "roll": 9,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 5,
+            "node": "a"
+        }],
+        "played": "2020-04-21T16:18:55.893265+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "red",
+        "actions": [
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "O",
+            "wants": "G"
+        },
+        {
+            "type": "purchase",
+            "card": "KN"
+        }],
+        "played": "2020-04-21T16:27:44.324151+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 11,
+            "node": "d"
+        },
+        {
+            "type": "settlement",
+            "hex": 10,
+            "node": "d"
+        }],
+        "played": "2020-04-21T17:15:01.296199+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "orange",
+        "actions": [],
+        "played": "2020-04-21T23:26:21.838446+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "red",
+        "actions": [
+        {
+            "type": "robber",
+            "losses": [],
+            "hex": 2,
+            "victim": "orange",
+            "resource": "T"
+        },
+        {
+            "type": "road",
+            "hex": 17,
+            "node": "b"
+        }],
+        "played": "2020-04-21T23:58:20.276957+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "robber",
+            "losses": [],
+            "hex": 1,
+            "victim": null,
+            "resource": null
+        }],
+        "played": "2020-04-22T01:16:06.361726+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 1,
+            "node": "b"
+        }],
+        "played": "2020-04-22T05:13:18.947467+00:00"
+    },
+    {
+        "roll": 10,
+        "color": "red",
+        "actions": [],
+        "played": "2020-04-22T13:19:56.386637+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 12,
+            "node": "f"
+        },
+        {
+            "type": "purchase",
+            "card": "KN"
+        }],
+        "played": "2020-04-22T16:56:08.795111+00:00"
+    },
+    {
+        "roll": 5,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 1,
+            "node": "a"
+        }],
+        "played": "2020-04-23T01:30:33.980180+00:00"
+    },
+    {
+        "roll": 9,
+        "color": "red",
+        "actions": [
+        {
+            "hex": 8,
+            "resource": null,
+            "victim": null,
+            "type": "play",
+            "card": "KN"
+        }],
+        "played": "2020-04-23T01:41:29.005117+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "robber",
+            "losses": [
+                ["blue", "GSSG"]
+            ],
+            "hex": 2,
+            "victim": "orange",
+            "resource": "S"
+        },
+        {
+            "type": "road",
+            "hex": 12,
+            "node": "a"
+        }],
+        "played": "2020-04-23T04:13:03.684555+00:00"
+    },
+    {
+        "roll": 6,
+        "color": "orange",
+        "actions": [],
+        "played": "2020-04-24T02:53:41.360505+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "red",
+        "actions": [
+        {
+            "type": "robber",
+            "losses": [],
+            "hex": 8,
+            "victim": null,
+            "resource": null
+        }],
+        "played": "2020-04-24T23:06:02.066803+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "robber",
+            "losses": [],
+            "hex": 16,
+            "victim": "red",
+            "resource": "T"
+        },
+        {
+            "type": "purchase",
+            "card": "KN"
+        }],
+        "played": "2020-04-25T00:38:04.248583+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "orange",
+        "actions": [],
+        "played": "2020-04-25T01:59:33.514618+00:00"
+    },
+    {
+        "roll": 6,
+        "color": "red",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 18,
+            "node": "d"
+        }],
+        "played": "2020-04-25T02:04:03.575842+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 12,
+            "node": "b"
+        }],
+        "played": "2020-04-25T02:05:50.314218+00:00"
+    },
+    {
+        "roll": 9,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 1,
+            "node": "f"
+        }],
+        "played": "2020-04-25T02:12:59.307531+00:00"
+    },
+    {
+        "roll": 9,
+        "color": "red",
+        "actions": [],
+        "played": "2020-04-25T02:16:12.263589+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "blue",
+        "actions": [
+        {
+            "hex": 2,
+            "resource": "T",
+            "victim": "orange",
+            "type": "play",
+            "card": "KN"
+        },
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "G",
+            "wants": "O"
+        },
+        {
+            "type": "trade",
+            "by": "harbor",
+            "offers": "S",
+            "wants": "O"
+        }],
+        "played": "2020-04-25T02:36:01.237272+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "robber",
+            "losses": [
+                ["red", "OSSS"]
+            ],
+            "hex": 12,
+            "victim": "blue",
+            "resource": "O"
+        }],
+        "played": "2020-04-25T02:43:42.764197+00:00"
+    },
+    {
+        "roll": 5,
+        "color": "red",
+        "actions": [],
+        "played": "2020-04-25T02:45:17.174443+00:00"
+    },
+    {
+        "roll": 12,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 16,
+            "node": "f"
+        },
+        {
+            "hex": 2,
+            "resource": "S",
+            "victim": "orange",
+            "type": "play",
+            "card": "KN"
+        }],
+        "played": "2020-04-25T03:25:34.856024+00:00"
+    },
+    {
+        "roll": 6,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "O",
+            "wants": "S"
+        }],
+        "played": "2020-04-25T03:26:56.434411+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "red",
+        "actions": [],
+        "played": "2020-04-25T03:31:17.878999+00:00"
+    },
+    {
+        "roll": 10,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "city",
+            "hex": 12,
+            "node": "f"
+        },
+        {
+            "type": "trade",
+            "by": "harbor",
+            "offers": "S",
+            "wants": "G"
+        },
+        {
+            "type": "purchase",
+            "card": "KN"
+        }],
+        "played": "2020-04-25T04:44:01.863882+00:00"
+    },
+    {
+        "roll": 11,
+        "color": "orange",
+        "actions": [],
+        "played": "2020-04-25T05:32:46.244791+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "red",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 18,
+            "node": "c"
+        }],
+        "played": "2020-04-25T11:58:28.135155+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "road",
+            "hex": 12,
+            "node": "d"
+        }],
+        "played": "2020-04-26T01:22:49.657309+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 3,
+            "node": "f"
+        }],
+        "played": "2020-04-26T01:37:16.892612+00:00"
+    },
+    {
+        "roll": 10,
+        "color": "red",
+        "actions": [
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "O",
+            "wants": "G"
+        }],
+        "played": "2020-04-26T01:42:42.735888+00:00"
+    },
+    {
+        "roll": 7,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "robber",
+            "losses": [
+                ["blue", "GGGGSG"]
+            ],
+            "hex": 8,
+            "victim": null,
+            "resource": null
+        },
+        {
+            "type": "purchase",
+            "card": "VP"
+        }],
+        "played": "2020-04-26T01:51:13.600088+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "orange",
+        "actions": [],
+        "played": "2020-04-26T02:00:40.907136+00:00"
+    },
+    {
+        "roll": 8,
+        "color": "red",
+        "actions": [
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "B",
+            "wants": "T"
+        },
+        {
+            "type": "settlement",
+            "hex": 18,
+            "node": "c"
+        }],
+        "played": "2020-04-26T02:17:36.124728+00:00"
+    },
+    {
+        "roll": 5,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "G",
+            "wants": "O"
+        },
+        {
+            "type": "road",
+            "hex": 12,
+            "node": "b"
+        }],
+        "played": "2020-04-26T03:25:13.498424+00:00"
+    },
+    {
+        "roll": 9,
+        "color": "orange",
+        "actions": [
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "B",
+            "wants": "O"
+        }],
+        "played": "2020-04-26T03:40:36.493646+00:00"
+    },
+    {
+        "roll": 2,
+        "color": "red",
+        "actions": [],
+        "played": "2020-04-26T04:04:14.826993+00:00"
+    },
+    {
+        "roll": 9,
+        "color": "blue",
+        "actions": [
+        {
+            "type": "trade",
+            "by": "bank",
+            "offers": "G",
+            "wants": "O"
+        }],
+        "played": "2020-04-26T05:26:39.484621+00:00"
+    },
+    {
+        "roll": 4,
+        "color": "orange",
+        "actions": [],
+        "played": "2020-04-27T02:34:26.281989+00:00"
+    },
+    {
+        "roll": 6,
+        "color": "red",
+        "actions": [
+        {
+            "type": "settlement",
+            "hex": 18,
+            "node": "e"
+        }],
+        "played": "2020-04-27T22:48:44.176722+00:00"
+    }],
+    "players": [
+    {"name": "David", "color": "blue", "id": 1},
+    {"name": "Colleen", "color": "orange", "id": 3},
+    {"name": "Darcy", "color": "red", "id": 58 ]
+}

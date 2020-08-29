@@ -1,9 +1,9 @@
-{% extends "travel/base.html" %}
-{% block travel_content %}
+{% extends "settlers/base.html" %}
+{% block settlers_content %}
     <h1>Settlers Games</h1>
     <p>
-        <a class="btn btn-xs btn-primary" href="{% url 'settlers:new' %}">New</a>
-        <a class="btn btn-xs btn-success" href="{% url 'settlers:detail' 1 %}">Demo</a>
+        <a class="button is-small" href="{% url 'settlers:new' %}">New</a>
+        <a class="button is-small" href="{% url 'settlers:detail' 1 %}">Demo</a>
     </p>
     <ul>{% for g in games %}
         {% if g.id != 1 %}
@@ -14,6 +14,8 @@
             {% endfor %}
         </li>
     {% endif %}
+    {% empty %}
+        <li> No games</li>
     {% endfor %}
     </ul>
-{% endblock travel_content %}
+{% endblock settlers_content %}
