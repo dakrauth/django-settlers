@@ -1,36 +1,7 @@
-const $ = (q, node) => (node || document).querySelector(q);
-const $$ = (q, node) => (node || document).querySelectorAll(q);
-const point = (x, y) => ({x: x, y: y});
+import { Utils } from './utils.js'
 
-const pointIsInPolyfunction = function (p, polygon) {
-    let isInside = false;
-    let minX = polygon[0].x, maxX = polygon[0].x;
-    let minY = polygon[0].y, maxY = polygon[0].y;
-    for(const n = 1; n < polygon.length; n++) {
-        const q = polygon[n];
-        minX = Math.min(q.x, minX);
-        maxX = Math.max(q.x, maxX);
-        minY = Math.min(q.y, minY);
-        maxY = Math.max(q.y, maxY);
-    }
 
-    if(p.x < minX || p.x > maxX || p.y < minY || p.y > maxY) {
-        return false;
-    }
-
-    let i = 0, j = polygon.length - 1;
-    for (; i < polygon.length; j = i++) {
-        if(
-            (polygon[i].y > p.y) != (polygon[j].y > p.y) &&
-            p.x < (polygon[j].x - polygon[i].x) * (p.y - polygon[i].y) / (polygon[j].y - polygon[i].y) + polygon[i].x
-        ) {
-            isInside = !isInside;
-        }
-    }
-    return isInside;
-};
-
-const Const = {
+const Mapping = {
     diceDistro: {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1},
     diceDistroText: {
          2: '.',  3: '..',  4: '...', 5: '....', 6: '.....', 
@@ -56,6 +27,7 @@ const Const = {
     edgeNeighbor: {a: 'd', b: 'e', c: 'f', d: 'a', e: 'b', f: 'c'}
 };
 
+
 const Color = {
     white: '#f0f0f0',  // fff1b5
     red: '#b10000',
@@ -73,92 +45,6 @@ const Color = {
         brown: '#fff'
     }
 }
-
-const Utils = {
-    isString: o => typeof o === 'string',
-    capitalize: s => `${s[0].toUpperCase()}${s.substring(1)}`,
-    padLeft: i => i.toString().padStart(2, 0),
-    isEven: i => i % 2 === 0,
-    divMod: (a, b) => [Math.floor(a / b), a % b],
-    randomInt: max => Math.floor(Math.random() * Math.floor(max)),
-    randomIndex: array => array[Utils.randomInt(array.length)],
-    randomDice: roll => {
-        if(roll >= 4 && roll <= 10) {
-            return Utils.randomIndex(Const.diceCombos[roll]);
-        }
-        let half = roll / 2;
-        return [Math.ceil(half), Math.floor(half)];
-    },
-    timeDelta: function(then, now) {
-        now = now || new Date();
-        let seconds = Math.floor((then - now) / 1000);
-        let [hours, minutes] = Utils.divMod(seconds, 3600);
-        [minutes, seconds] = Utils.divMod(minutes, 60);
-        return {hours, minutes, seconds};
-    },
-    formatTimeDelta: function(then, now) {
-        const td = Utils.timeDelta(then, now);
-        let bits = [];
-        td.hours && bits.push(Utils.pluralize(td.hours, 'hour', 'hours'));
-        td.minutes && bits.push(Utils.pluralize(td.minutes, 'minute', 'minutes'));
-        td.seconds && bits.push(Utils.pluralize(td.seconds, 'second', 'seconds'));
-        return bits.join(', ');
-    },
-    radians: ang => ang * Math.PI / 180,
-    deepCopy: o => JSON.parse(JSON.stringify(o)),
-    range: n => Array.from({length: n}, (x, i) => i),
-    dispatch: function(type, details) {
-        let evt = new CustomEvent(type, {detail: JSON.stringify(details)});
-        document.dispatchEvent(evt);
-    },
-    uniqueId: (function() {
-        let i = 0;
-        return (() => ++i);
-    })(),
-    showAlert: function(msg) {
-        alert(msg);
-    },
-    shuffle: function(array) {
-        // See https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#Fisher_and_Yates'_original_method
-        for(let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * i);
-            const temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-        }
-        return array;
-    },
-    pluralize: function(n, single, plural) {
-        return n === 1 ? `${n} ${single}` : `${n} ${plural}`;
-    },
-    hide: function(q) {
-        (this.isString(q) ? $(q) : q).classList.add('hidden');
-    },
-    hideAll: function(q) {
-        if(this.isString(q)) {
-            q = $$(q)
-        }
-        for(let el of q) {
-            this.hide(el);
-        }
-    },
-    show: function(q) {
-        (this.isString(q) ? $(q) : q).classList.remove('hidden');
-    },
-    showAll: function(q) {
-        if(this.isString(q)) {
-            q = $$(q);
-        }
-        for(let el of q) {
-            this.show(el);
-        }
-    },
-    removeAllChildren: function(el) {
-        while(el.firstChild) {
-            el.firstChild.remove();
-        }
-    }
-};
 
 
 const Resource = (function() {
@@ -195,14 +81,16 @@ const Resource = (function() {
     return values;
 })();
 
-const defaultConfig = {
-    sideLength: 50,
-    boardWidth: 7,
-    boardHeight: 7,
-    showEmpty: false,
-    useWater: false,
-    debug: false
-};
+const makeConfig = function(opts) {
+    return Object.assign({}, {
+        sideLength: 50,
+        boardWidth: 7,
+        boardHeight: 7,
+        showEmpty: false,
+        useWater: false,
+        debug: false
+    }, opts || {});
+} 
 
 const Layouts = {
     standard34: {
@@ -266,87 +154,60 @@ const Layouts = {
             {"hex": 29, "edge": "c", "resource": "S", "id": 10},
             {"hex": 30, "edge": "b", "resource": "3", "id": 11}
         ]
-    }
-}
-
-const parseTradeOffer = function(str) {
-    let regex = /(\d) *(wheat|grain|sheep|wool|tree|lumber|wood|ore|brick)s?/gm;
-    let map = {
-        wheat: 'G', grain: 'G',
-        sheep: 'S', wool:  'S',
-        tree:  'T', wood:  'T', lumber: 'T',
-        ore:   'O',
-        brick: 'B'
-    };
-    let m = null;
-    let results = [];
-    str = str.toLowerCase();
-    while ((m = regex.exec(str)) !== null) {
-        // This is necessary to avoid infinite loops with zero-width matches
-        if (m.index === regex.lastIndex) {
-            regex.lastIndex++;
-        }
-        
-        // The result can be accessed through the `m`-variable.
-        results.push({
-            resource: map[m[2]],
-            count: parseInt(m[1])
-        });
-    }
-    return results.length ? results : null;
-};
-
-const randomBoard = function(layout) {
-    layout = layout || Layouts.standard34;
-    terrain = layout.terrain;
-    let items = [];
-    let conflict = false;
-    let matrix = null;
-    let attempts = 0;
-    do {
-        ++attempts;
-        conflict = false;
-        for(let [k, v] of Object.entries(terrain)) {
-            items = items.concat(Array(v).fill(k));
-        }
-        items = Utils.shuffle(items);
-        let prev = null;
-        let current = null;
-        matrix = Utils.deepCopy(layout.grid);
-
-        // if row is even, -1, 0
-        // if row is  odd, 0, +1 
-        for(let row = 1; row < matrix.length - 1; row++) {
-            prev = null;
-            for(let col = 1; col < matrix[row].length; col++) {
-                if(matrix[row][col] == 'W' || matrix[row][col] == 'X') {
-                    continue;
-                }
-                current = items.shift();
-                let tried = 0;
-                let offset = row % 2 === 0 ? [-1, 0] : [0, 1];
-                while(
-                    current === prev ||
-                    current === matrix[row - 1][col + offset[0]] ||
-                    current === matrix[row - 1][col + offset[1]]
-                ) {
-                    if(tried > items.length) {
-                        conflict = true;
-                        break;
-                    }
-                    items.push(current);
-                    current = items.shift();
-                    ++tried;
-                }
-                matrix[row][col] = current;
-                prev = current;
+    },
+    randomBoard: function(layout) {
+        layout = layout || Layouts.standard34;
+        const terrain = layout.terrain;
+        let items = [];
+        let conflict = false;
+        let matrix = null;
+        let attempts = 0;
+        do {
+            ++attempts;
+            conflict = false;
+            for(let [k, v] of Object.entries(terrain)) {
+                items = items.concat(Array(v).fill(k));
             }
-        }
-    } while(conflict);
-    // console.log('Found with attempts:', attempts);
-    // console.log(matrix);
-    return matrix;
+            items = Utils.shuffle(items);
+            let prev = null;
+            let current = null;
+            matrix = Utils.deepCopy(layout.grid);
+
+            // if row is even, -1, 0
+            // if row is  odd, 0, +1 
+            for(let row = 1; row < matrix.length - 1; row++) {
+                prev = null;
+                for(let col = 1; col < matrix[row].length; col++) {
+                    if(matrix[row][col] == 'W' || matrix[row][col] == 'X') {
+                        continue;
+                    }
+                    current = items.shift();
+                    let tried = 0;
+                    let offset = row % 2 === 0 ? [-1, 0] : [0, 1];
+                    while(
+                        current === prev ||
+                        current === matrix[row - 1][col + offset[0]] ||
+                        current === matrix[row - 1][col + offset[1]]
+                    ) {
+                        if(tried > items.length) {
+                            conflict = true;
+                            break;
+                        }
+                        items.push(current);
+                        current = items.shift();
+                        ++tried;
+                    }
+                    matrix[row][col] = current;
+                    prev = current;
+                }
+            }
+        } while(conflict);
+        // console.log('Found with attempts:', attempts);
+        // console.log(matrix);
+        return matrix;
+    }
 }
+
 
 const Purchase = (function() {
     const costs = {
@@ -367,7 +228,7 @@ const Purchase = (function() {
 
     return Object.assign({}, costs, {
         isValid: function(item, resources) { return validate(item, resources)},
-        evaluate: evaluate = function(resources) {
+        evaluate: function(resources) {
             const result = {};
             for(const key of Object.keys(costs)) {
                 result[key] = validate(key, resources);
@@ -377,6 +238,7 @@ const Purchase = (function() {
     });
 })();
 
+
 class GameException {
     constructor(message, data) {
         this.message = message;
@@ -384,3 +246,13 @@ class GameException {
     }
 }
 
+
+export {
+    Color,
+    GameException,
+    Layouts,
+    Mapping,
+    Purchase,
+    Resource,
+    makeConfig
+};
