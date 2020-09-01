@@ -34,7 +34,10 @@
 {% endblock settlers_content %}
 {% block settlers_application_javascript %}
     {{ status|json_script:"app-status" }}
-    <script>
+    <script type="module">
+        import { App } from '{% static "/settlers/js/app.js" %}';
+        import { $ } from '{% static "/settlers/js/common.js" %}';
+
         const onRandomize = function(bd) {
             $('#id_game').value = bd.toJSON();
         }

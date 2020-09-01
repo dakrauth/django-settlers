@@ -22,7 +22,8 @@
 {% endblock settlers_content %}
 {% block settlers_application_javascript %}
     {{ status|json_script:"app-status" }}
-    <script>
+    <script type="module">
+        import { App } from '{% static "/settlers/js/app.js" %}'
         let catan = App.random();
     </script>
 {% endblock settlers_application_javascript %}

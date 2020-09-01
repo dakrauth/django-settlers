@@ -100,7 +100,8 @@
 {% endblock settlers_content %}
 {% block settlers_application_javascript %}
 {{ game|json_script:"app-status" }}
-<script>
+<script type="module">
+    import { App } from '{% static "/settlers/js/app.js" %}';
     App.play();
 </script>
 {% endblock settlers_application_javascript %}
