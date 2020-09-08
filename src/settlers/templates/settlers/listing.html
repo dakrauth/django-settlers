@@ -1,21 +1,41 @@
 {% extends "settlers/base.html" %}
+{% load static %}
 {% block settlers_content %}
-    <h1>Settlers Games</h1>
-    <p>
-        <a class="button is-small" href="{% url 'settlers:new' %}">New</a>
-        <a class="button is-small" href="{% url 'settlers:detail' 1 %}">Demo</a>
-    </p>
-    <ul>{% for g in games %}
-        {% if g.id != 1 %}
-        <li>
-            <a class="" href="{{ g.get_absolute_url }}">Game #{{ g.id }}</a> |
-            {% for player in g.game.players %}
-            {{ player.name }}{% if not forloop.last %}, {% endif %}
+    <section class="section">
+        <h1 class="is-size-4">
+            <img class="image is-32x32 is-pulled-left" src="{% static "img/settlers/favicon-large.png" %}">
+            <span class="pl-2">Settlers Games</span>
+        </h1>
+        <p class="buttons mt-4">
+            <a class="button is-rounded is-link is-small" href="{% url 'settlers:new' %}">New</a>
+            <a class="button is-rounded is-link is-small" href="{% url 'settlers:detail' 1 %}">Demo</a>
+            <a class="button is-rounded is-link is-small" href="{% url 'settlers:random' %}">Randomize</a>
+        </p>
+        <table class="table is-striped is-narrow is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Game</th>
+                    <th>Players</th>
+                    <th>Updated</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for g in games %}
+            <tr>
+            {% if g.id != 1 %}
+                <td><a class="" href="{{ g.get_absolute_url }}">View Game #{{ g.id }}</a></td>
+                <td>
+                    {% for player in g.game.players %}
+                    {{ player.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ g.updated }}</td>
+            </tr>
+            {% endif %}
+            {% empty %}
+            <tr><td colspan="2">No games</td></tr>
             {% endfor %}
-        </li>
-    {% endif %}
-    {% empty %}
-        <li> No games</li>
-    {% endfor %}
-    </ul>
+            </tbody>
+    </table>
+    </section>
 {% endblock settlers_content %}
