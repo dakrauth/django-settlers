@@ -36,7 +36,7 @@
     {{ status|json_script:"app-status" }}
     <script type="module">
         import { App } from '{% static "/settlers/js/app.js" %}';
-        import { $ } from '{% static "/settlers/js/common.js" %}';
+        import { $ } from '{% static "/settlers/js/utils.js" %}';
 
         const onRandomize = function(bd) {
             $('#id_game').value = bd.toJSON();

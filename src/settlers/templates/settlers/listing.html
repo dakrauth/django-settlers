@@ -17,19 +17,21 @@
                     <th>Game</th>
                     <th>Players</th>
                     <th>Updated</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
             {% for g in games %}
             <tr>
             {% if g.id != 1 %}
-                <td><a class="" href="{{ g.get_absolute_url }}">View Game #{{ g.id }}</a></td>
+                <td>Game #{{ g.id }}</td>
                 <td>
                     {% for player in g.game.players %}
                     {{ player.name }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </td>
                 <td>{{ g.updated }}</td>
+                <td><a class="button is-rounded is-link is-small" href="{{ g.get_absolute_url }}">View</a></td>
             </tr>
             {% endif %}
             {% empty %}
