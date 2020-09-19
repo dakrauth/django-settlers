@@ -71,6 +71,25 @@ class Edge extends Node {
     }
 }
 
+const reDigits = /\d+/;
+
+class Harbor {
+    constructor(location, resource) {
+        this.id = location;
+        this.resource = resource;
+        this.edge = location.replace(reDigits, "");
+        this.hex = parseInt(location);
+    }
+    static factory(harborJSON) {
+        // harborJSON will be an object of from {location: resource, ...}
+        return Object.entries(harborJSON).reduce((acc, h) => {
+            const harbor = new Harbor(h[0], h[1]);
+            acc[harbor.id] = harbor;
+            return acc;
+        }, {});
+    }
+}
+
 export class Board {
     constructor(init, config) {
         this.init = init;
@@ -79,13 +98,7 @@ export class Board {
         this.hexMatrix = [];
         this.hexIds = {};
 
-        let harborId = 0;
-        this.harbors = init.harbors.reduce((acc, h) => {
-            h.id = ++harborId;
-            acc[h.id] = h;
-            return acc;
-        }, {});
-
+        this.harbors = Harbor.factory(init.harbors);
         this.chits = {
             2: [], 3: [],  4: [],  5: [],  6: [],
             8: [], 9: [], 10: [], 11: [], 12: []
@@ -190,12 +203,16 @@ export class Board {
     randomize(layout) {
         layout = layout || Layouts.standard34;
         let rb = Layouts.randomBoard(layout).flat();
+
         for(let hex of this.hexes) {
             hex.resource = rb.shift();
         }
 
         this.randomizeChits(layout.chits);
-        this.randomizeHarbors(layout.harbors);
+        this.randomizeHarbors(Object.values(Harbor.factory(layout.harbors)));
+        let data = this.initialData();
+        data.actual = {harbors: Utils.deepCopy(Object.values(this.harbors))};
+        console.log()
     }
     initialData() {
         let data = Utils.deepCopy(this.init);
@@ -230,6 +247,7 @@ export class Board {
                 harbor.resource = resource;
             }
         } while(conflict);
+        this.harbors = harbors;
         console.debug(`randomized harbors in ${attempts} attempt(s)`);
     }
     randomizeChits(originalChits) {
@@ -244,6 +262,7 @@ export class Board {
             }
             return true;
         };
+
         do {
             conflict = false;
             ++attempts;

@@ -110,17 +110,17 @@ const Layouts = {
             ["X", "X", "W", "W", "W", "W", "X"],
         ],
         chits: [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12],
-        harbors: [
-            {"hex":  1, "edge": "f", "resource": "3", "id": 1},
-            {"hex":  2, "edge": "a", "resource": "B", "id": 2},
-            {"hex":  4, "edge": "e", "resource": "O", "id": 3},
-            {"hex":  7, "edge": "a", "resource": "3", "id": 4},
-            {"hex": 12, "edge": "b", "resource": "S", "id": 5},
-            {"hex": 13, "edge": "e", "resource": "G", "id": 6},
-            {"hex": 16, "edge": "c", "resource": "3", "id": 7},
-            {"hex": 17, "edge": "d", "resource": "3", "id": 8},
-            {"hex": 18, "edge": "c", "resource": "T", "id": 9}
-        ]
+        harbors: {
+            "1f": "3",
+            "2a": "B",
+            "4e": "O",
+            "7a": "3",
+            "12b": "S",
+            "13e": "G",
+            "16c": "3",
+            "17d": "3",
+            "18c": "T"
+        }
     },
     standard56: {
         name: "standard56",
@@ -141,19 +141,19 @@ const Layouts = {
             ["X", "W", "L", "L", "L", "W", "X", "X", "X"],
             ["X", "X", "W", "W", "W", "W", "X", "X", "X"],
         ],
-        harbors: [
-            {"hex":  1, "edge": "f", "resource": "3", "id":  1},
-            {"hex":  2, "edge": "a", "resource": "B", "id":  2},
-            {"hex":  7, "edge": "a", "resource": "O", "id":  3},
-            {"hex":  8, "edge": "e", "resource": "3", "id":  4},
-            {"hex": 13, "edge": "d", "resource": "S", "id":  5},
-            {"hex": 18, "edge": "b", "resource": "G", "id":  6},
-            {"hex": 23, "edge": "c", "resource": "3", "id":  7},
-            {"hex": 24, "edge": "e", "resource": "3", "id":  8},
-            {"hex": 28, "edge": "d", "resource": "T", "id":  9},
-            {"hex": 29, "edge": "c", "resource": "S", "id": 10},
-            {"hex": 30, "edge": "b", "resource": "3", "id": 11}
-        ]
+        harbors: {
+            "1f": "3",
+            "2a": "B",
+            "7a": "O",
+            "8e": "3",
+            "13d": "S",
+            "18b": "G",
+            "23c": "3",
+            "24e": "3",
+            "28d": "T",
+            "29c": "S",
+            "30b": "3"
+        }
     },
     randomBoard: function(layout) {
         layout = layout || Layouts.standard34;
