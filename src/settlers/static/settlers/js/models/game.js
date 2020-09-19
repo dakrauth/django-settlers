@@ -1,5 +1,5 @@
 import { Utils } from '../utils.js'
-import { Purchase } from '../common.js';
+import { Purchase, Layouts } from '../common.js';
 import { Board } from './board.js';
 
 class BaseResources {
@@ -148,18 +148,17 @@ class Player {
 }
 
 class Players {
-    constructor(state) {
+    constructor(players, constructs, numTurns) {
         this._players = [];
         this._playersMap = {};
-        for(const p of state.players) {
-            const player = new Player(p, Utils.deepCopy(state.init.constructs));
+        for(const p of players) {
+            const player = new Player(p, Utils.deepCopy(constructs));
             this._players.push(player);
             this._playersMap[p.id] = player;
             this._playersMap[p.color] = player;
         }
         this.length = this._players.length;
         this.activePlayer = (() => {
-            const numTurns = state.turns.length;
             const numPlayers = this._players.length;
 
             let offset = numTurns % numPlayers;
@@ -215,9 +214,15 @@ export class Game {
     constructor(state, cfg) {
         this.cfg = cfg;
         this.state = state;
-        this.board = new Board(state.init, this.cfg);
+        
+        this.layout = Utils.deepCopy(Layouts[state.layout]);
+        this.layout.harbors = state.harbors;
+        this.layout.grid = state.grid;
+
+        this.board = new Board(this.layout, this.cfg);
         this.currentTurn = null;
-        this.players = new Players(state);
+
+        this.players = new Players(state.players, this.layout.constructs, state.turns.length);
         this.activePlayer = this.players.activePlayer;
         this.reset();
         this.runs = [];
@@ -249,15 +254,15 @@ export class Game {
         this.largestArmy = null;
         this.largestArmyCount = 2;
 
-        this.robber = this.board.getHex(this.state.init.robber || this.board.desert);
+        this.robber = this.board.getHex(this.state.robber || this.board.desert);
         this.turns = Utils.deepCopy(this.state.turns);
         if(this.currentTurn) {
             this.turns.push(this.currentTurn);
         }
         this.turns.forEach((t,i) => t.index = i);
-        this.resourceCards = Utils.deepCopy(this.state.init.resourceCards);
+        this.resourceCards = Utils.deepCopy(this.layout.resourceCards);
         this.devCards = Utils.shuffle(
-            Object.entries(this.state.init.developmentCards).flatMap(
+            Object.entries(this.layout.developmentCards).flatMap(
                 e=>Array(e[1]).fill(e[0])
             )
         );

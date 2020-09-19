@@ -48,7 +48,7 @@ class SettlersNewGameForm(forms.ModelForm):
                         player_color = color
                         break
             player_color = player_color or colors[0]
-            players.append({'id': profile.id, 'name': str(profile), 'color': player_color})
+            players.append({'id': profile.user.id, 'name': str(profile), 'color': player_color})
             colors.remove(player_color)
 
         instance.game['players'] = players
