@@ -155,6 +155,41 @@ const Layouts = {
             "30b": "3"
         }
     },
+    seafarers: {
+        name: "seafarers",
+        pointsToWin: 10,
+        terrain: {D: 2, T: 6, O: 5, B: 5, G: 6, S: 6},
+        constructs: {city: 4, settlement: 5, road: 15},
+        resourceCards: {O: 24, G: 24, T: 24, S: 24, B: 24},
+        developmentCards: {KN: 20, RB: 3, MP: 3, YP: 3, VP: 5},
+        chits: [2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12],
+        grid: [
+            ["X", "X", "X", "W", "W", "X", "X", "X", "X"],
+            ["X", "X", "W", "W", "W", "W", "X", "X", "X"],
+            ["X", "W", "L", "L", "L", "W", "X", "X", "X"],
+            ["X", "W", "L", "L", "L", "L", "W", "X", "X"],
+            ["W", "L", "L", "L", "L", "L", "W", "X", "X"],
+            ["W", "L", "L", "L", "L", "L", "L", "W", "X"],
+            ["W", "L", "L", "L", "L", "L", "W", "X", "X"],
+            ["X", "W", "L", "L", "L", "L", "W", "X", "X"],
+            ["X", "W", "L", "L", "L", "W", "X", "X", "X"],
+            ["X", "X", "W", "W", "W", "W", "X", "X", "X"],
+            ["X", "X", "X", "W", "W", "X", "X", "X", "X"],
+        ],
+        harbors: {
+            "1f": "3",
+            "2a": "B",
+            "7a": "O",
+            "8e": "3",
+            "13d": "S",
+            "18b": "G",
+            "23c": "3",
+            "24e": "3",
+            "28d": "T",
+            "29c": "S",
+            "30b": "3"
+        }
+    },
     randomBoard: function(layout) {
         layout = layout || Layouts.standard34;
         const terrain = layout.terrain;

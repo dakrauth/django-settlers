@@ -1,0 +1,803 @@
+{
+    "isSync": true,
+    "init": {
+        "name": "standard34",
+        "terrain": {
+            "D": 1,
+            "T": 4,
+            "O": 3,
+            "B": 3,
+            "G": 4,
+            "S": 4
+        },
+        "constructs": {
+            "city": 4,
+            "settlement": 5,
+            "road": 15
+        },
+        "resourceCards": {
+            "O": 19,
+            "G": 19,
+            "T": 19,
+            "S": 19,
+            "B": 19
+        },
+        "developmentCards": {
+            "KN": 14,
+            "RB": 2,
+            "MP": 2,
+            "YP": 2,
+            "VP": 5
+        },
+        "grid": "X0X0W0W0W0W0X0X0W0GaB3O9W0X0X0W0O6ScT4S8W0W0T2D0BaG3O5W0X0W0GbT5S4T8W0X0W0S9B6GbW0X0X0X0W0W0W0W0X0",
+        "chits": [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12],
+        "harbors": [
+        {
+            "hex": 1,
+            "edge": "f",
+            "resource": "3",
+            "id": 1
+        },
+        {
+            "hex": 2,
+            "edge": "a",
+            "resource": "T",
+            "id": 2
+        },
+        {
+            "hex": 4,
+            "edge": "e",
+            "resource": "3",
+            "id": 3
+        },
+        {
+            "hex": 7,
+            "edge": "a",
+            "resource": "G",
+            "id": 4
+        },
+        {
+            "hex": 12,
+            "edge": "b",
+            "resource": "B",
+            "id": 5
+        },
+        {
+            "hex": 13,
+            "edge": "e",
+            "resource": "3",
+            "id": 6
+        },
+        {
+            "hex": 16,
+            "edge": "c",
+            "resource": "S",
+            "id": 7
+        },
+        {
+            "hex": 17,
+            "edge": "d",
+            "resource": "3",
+            "id": 8
+        },
+        {
+            "hex": 18,
+            "edge": "c",
+            "resource": "O",
+            "id": 9
+        }]
+    },
+    "players": [
+    {
+        "id": 3,
+        "name": "colleeniem",
+        "color": "orange"
+    },
+    {
+        "id": 114,
+        "name": "dlewis",
+        "color": "red"
+    },
+    {
+        "id": 1,
+        "name": "david",
+        "color": "blue"
+    },
+    {
+        "id": 115,
+        "name": "danielle",
+        "color": "white"
+    }],
+    "turns": [
+        {
+            "roll": null,
+            "color": "orange",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 18,
+                "node": "a"
+            },
+            {
+                "type": "road",
+                "hex": 18,
+                "node": "f"
+            }],
+            "played": "2020-07-19T05:47:14.913601+00:00"
+        },
+        {
+            "roll": null,
+            "color": "red",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 15,
+                "node": "a"
+            },
+            {
+                "type": "road",
+                "hex": 15,
+                "node": "a"
+            }],
+            "played": "2020-07-19T05:49:11.757201+00:00"
+        },
+        {
+            "roll": null,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 7,
+                "node": "e"
+            },
+            {
+                "type": "road",
+                "hex": 11,
+                "node": "a"
+            }],
+            "played": "2020-07-19T05:52:07.197983+00:00"
+        },
+        {
+            "roll": null,
+            "color": "white",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 5,
+                "node": "b"
+            },
+            {
+                "type": "road",
+                "hex": 5,
+                "node": "a"
+            }],
+            "played": "2020-07-19T05:54:24.208663+00:00"
+        },
+        {
+            "roll": null,
+            "color": "white",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 4,
+                "node": "b"
+            },
+            {
+                "type": "road",
+                "hex": 5,
+                "node": "f"
+            }],
+            "played": "2020-07-19T05:58:47.569328+00:00"
+        },
+        {
+            "roll": null,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 14,
+                "node": "a"
+            },
+            {
+                "type": "road",
+                "hex": 10,
+                "node": "e"
+            }],
+            "played": "2020-07-19T06:01:54.559324+00:00"
+        },
+        {
+            "roll": null,
+            "color": "red",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 16,
+                "node": "a"
+            },
+            {
+                "type": "road",
+                "hex": 16,
+                "node": "f"
+            }],
+            "played": "2020-07-19T06:03:25.980946+00:00"
+        },
+        {
+            "roll": null,
+            "color": "orange",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 19,
+                "node": "a"
+            },
+            {
+                "type": "road",
+                "hex": 19,
+                "node": "f"
+            }],
+            "played": "2020-07-19T06:07:55.180682+00:00"
+        },
+        {
+            "roll": 7,
+            "color": "orange",
+            "actions": [
+            {
+                "type": "robber",
+                "losses": [],
+                "hex": 13,
+                "victim": null,
+                "resource": null
+            }],
+            "played": "2020-07-19T06:08:51.754099+00:00"
+        },
+        {
+            "roll": 7,
+            "color": "red",
+            "actions": [
+            {
+                "type": "robber",
+                "losses": [],
+                "hex": 8,
+                "victim": null,
+                "resource": null
+            }],
+            "played": "2020-07-19T06:12:41.447452+00:00"
+        },
+        {
+            "roll": 10,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "road",
+                "hex": 7,
+                "node": "c"
+            }],
+            "played": "2020-07-19T06:15:01.641620+00:00"
+        },
+        {
+            "roll": 6,
+            "color": "white",
+            "actions": [
+            {
+                "type": "purchase",
+                "card": "KN"
+            }],
+            "played": "2020-07-19T06:20:29.034249+00:00"
+        },
+        {
+            "roll": 9,
+            "color": "orange",
+            "actions": [
+            {
+                "type": "road",
+                "hex": 17,
+                "node": "a"
+            }],
+            "played": "2020-07-19T06:23:04.636164+00:00"
+        },
+        {
+            "roll": 6,
+            "color": "red",
+            "actions": [
+            {
+                "type": "road",
+                "hex": 16,
+                "node": "a"
+            }],
+            "played": "2020-07-19T06:25:34.196187+00:00"
+        },
+        {
+            "roll": 8,
+            "color": "blue",
+            "actions": [],
+            "played": "2020-07-19T06:27:28.134063+00:00"
+        },
+        {
+            "roll": 7,
+            "color": "white",
+            "actions": [
+            {
+                "type": "robber",
+                "losses": [],
+                "hex": 18,
+                "victim": "orange",
+                "resource": "G"
+            }],
+            "played": "2020-07-19T06:30:44.336360+00:00"
+        },
+        {
+            "roll": 12,
+            "color": "orange",
+            "actions": [],
+            "played": "2020-07-19T06:32:40.454299+00:00"
+        },
+        {
+            "roll": 8,
+            "color": "red",
+            "actions": [
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "white",
+                "offers": [
+                {
+                    "resource": "T",
+                    "count": 1
+                }],
+                "wants": [
+                {
+                    "resource": "S",
+                    "count": 1
+                }]
+            }],
+            "played": "2020-07-19T06:33:55.181313+00:00"
+        },
+        {
+            "roll": 6,
+            "color": "blue",
+            "actions": [],
+            "played": "2020-07-19T06:36:37.090071+00:00"
+        },
+        {
+            "roll": 5,
+            "color": "white",
+            "actions": [
+            {
+                "type": "city",
+                "hex": 4,
+                "node": "b"
+            }],
+            "played": "2020-07-19T06:39:10.179379+00:00"
+        },
+        {
+            "roll": 12,
+            "color": "orange",
+            "actions": [
+            {
+                "type": "road",
+                "hex": 17,
+                "node": "f"
+            }],
+            "played": "2020-07-19T06:42:28.590878+00:00"
+        },
+        {
+            "roll": 11,
+            "color": "red",
+            "actions": [
+            {
+                "type": "purchase",
+                "card": "KN"
+            }],
+            "played": "2020-07-19T06:44:30.921256+00:00"
+        },
+        {
+            "roll": 10,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "road",
+                "hex": 10,
+                "node": "f"
+            }],
+            "played": "2020-07-19T06:49:23.691981+00:00"
+        },
+        {
+            "roll": 8,
+            "color": "white",
+            "actions": [
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "blue",
+                "offers": [
+                {
+                    "resource": "S",
+                    "count": 2
+                }],
+                "wants": [
+                {
+                    "resource": "B",
+                    "count": 1
+                }]
+            },
+            {
+                "type": "road",
+                "hex": 6,
+                "node": "f"
+            }],
+            "played": "2020-07-19T06:53:20.060155+00:00"
+        },
+        {
+            "roll": 3,
+            "color": "orange",
+            "actions": [],
+            "played": "2020-07-19T06:54:24.283051+00:00"
+        },
+        {
+            "roll": 10,
+            "color": "red",
+            "actions": [
+            {
+                "hex": 5,
+                "resource": "G",
+                "victim": "white",
+                "type": "play",
+                "card": "KN"
+            },
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "blue",
+                "offers": [
+                {
+                    "resource": "O",
+                    "count": 1
+                }],
+                "wants": [
+                {
+                    "resource": "S",
+                    "count": 1
+                }]
+            },
+            {
+                "type": "road",
+                "hex": 12,
+                "node": "c"
+            },
+            {
+                "type": "settlement",
+                "hex": 12,
+                "node": "c"
+            }],
+            "played": "2020-07-19T07:02:16.072769+00:00"
+        },
+        {
+            "roll": 9,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "orange",
+                "offers": [
+                {
+                    "resource": "O",
+                    "count": 1
+                }],
+                "wants": [
+                {
+                    "resource": "T",
+                    "count": 1
+                }]
+            },
+            {
+                "type": "settlement",
+                "hex": 12,
+                "node": "a"
+            }],
+            "played": "2020-07-19T07:12:57.791620+00:00"
+        },
+        {
+            "roll": 5,
+            "color": "white",
+            "actions": [
+            {
+                "hex": 12,
+                "resource": "S",
+                "victim": "blue",
+                "type": "play",
+                "card": "KN"
+            },
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "orange",
+                "offers": [
+                {
+                    "resource": "G",
+                    "count": 2
+                }],
+                "wants": [
+                {
+                    "resource": "T",
+                    "count": 1
+                }]
+            },
+            {
+                "type": "road",
+                "hex": 2,
+                "node": "b"
+            }],
+            "played": "2020-07-19T07:17:37.396731+00:00"
+        },
+        {
+            "roll": 7,
+            "color": "orange",
+            "actions": [
+            {
+                "type": "robber",
+                "losses": [],
+                "hex": 3,
+                "victim": null,
+                "resource": null
+            },
+            {
+                "type": "purchase",
+                "card": "VP"
+            }],
+            "played": "2020-07-19T07:20:00.569288+00:00"
+        },
+        {
+            "roll": 8,
+            "color": "red",
+            "actions": [],
+            "played": "2020-07-19T07:20:48.610574+00:00"
+        },
+        {
+            "roll": 5,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "trade",
+                "by": "bank",
+                "offers": "S",
+                "wants": "B"
+            },
+            {
+                "type": "road",
+                "hex": 10,
+                "node": "a"
+            }],
+            "played": "2020-07-19T07:22:19.852876+00:00"
+        },
+        {
+            "roll": 8,
+            "color": "white",
+            "actions": [
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "red",
+                "offers": [
+                {
+                    "resource": "S",
+                    "count": 1
+                }],
+                "wants": [
+                {
+                    "resource": "O",
+                    "count": 1
+                }]
+            },
+            {
+                "type": "purchase",
+                "card": "KN"
+            }],
+            "played": "2020-07-19T07:24:19.974150+00:00"
+        },
+        {
+            "roll": 7,
+            "color": "orange",
+            "actions": [
+            {
+                "type": "robber",
+                "losses": [
+                    ["red", "TTGG"]
+                ],
+                "hex": 12,
+                "victim": "blue",
+                "resource": "T"
+            },
+            {
+                "type": "trade",
+                "by": "bank",
+                "offers": "T",
+                "wants": "B"
+            },
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "white",
+                "offers": [
+                {
+                    "resource": "T",
+                    "count": 1
+                }],
+                "wants": [
+                {
+                    "resource": "S",
+                    "count": 1
+                }]
+            },
+            {
+                "type": "settlement",
+                "hex": 17,
+                "node": "f"
+            }],
+            "played": "2020-07-19T07:31:48.852438+00:00"
+        },
+        {
+            "roll": 9,
+            "color": "red",
+            "actions": [],
+            "played": "2020-07-19T07:35:03.881843+00:00"
+        },
+        {
+            "roll": 4,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "orange",
+                "offers": [
+                {
+                    "resource": "O",
+                    "count": 1
+                }],
+                "wants": [
+                {
+                    "resource": "G",
+                    "count": 1
+                }]
+            },
+            {
+                "type": "purchase",
+                "card": "KN"
+            }],
+            "played": "2020-07-19T07:37:29.585179+00:00"
+        },
+        {
+            "roll": 7,
+            "color": "white",
+            "actions": [
+            {
+                "type": "robber",
+                "losses": [],
+                "hex": 17,
+                "victim": "orange",
+                "resource": "S"
+            },
+            {
+                "hex": 15,
+                "resource": "S",
+                "victim": "red",
+                "type": "play",
+                "card": "KN"
+            }],
+            "played": "2020-07-19T07:42:08.120311+00:00"
+        },
+        {
+            "roll": 5,
+            "color": "orange",
+            "actions": [],
+            "played": "2020-07-19T07:43:04.930369+00:00"
+        },
+        {
+            "roll": 9,
+            "color": "red",
+            "actions": [
+            {
+                "type": "trade",
+                "by": "bank",
+                "offers": "O",
+                "wants": "G"
+            },
+            {
+                "type": "purchase",
+                "card": "KN"
+            }],
+            "played": "2020-07-19T07:44:03.358536+00:00"
+        },
+        {
+            "roll": 10,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "road",
+                "hex": 11,
+                "node": "f"
+            }],
+            "played": "2020-07-19T07:44:52.129659+00:00"
+        },
+        {
+            "roll": 3,
+            "color": "white",
+            "actions": [
+            {
+                "type": "settlement",
+                "hex": 2,
+                "node": "b"
+            }],
+            "played": "2020-07-19T07:46:13.073158+00:00"
+        },
+        {
+            "roll": 6,
+            "color": "orange",
+            "actions": [
+            {
+                "type": "road",
+                "hex": 13,
+                "node": "d"
+            }],
+            "played": "2020-07-19T07:50:10.795448+00:00"
+        },
+        {
+            "roll": 11,
+            "color": "red",
+            "actions": [
+            {
+                "hex": 4,
+                "resource": "T",
+                "victim": "blue",
+                "type": "play",
+                "card": "KN"
+            },
+            {
+                "type": "road",
+                "hex": 16,
+                "node": "b"
+            }],
+            "played": "2020-07-19T07:52:24.387332+00:00"
+        },
+        {
+            "roll": 6,
+            "color": "blue",
+            "actions": [
+            {
+                "type": "purchase",
+                "card": "KN"
+            }],
+            "played": "2020-07-19T07:54:27.384215+00:00"
+        },
+        {
+            "roll": 6,
+            "color": "white",
+            "actions": [
+            {
+                "type": "purchase",
+                "card": "KN"
+            },
+            {
+                "type": "trade",
+                "by": "player",
+                "trader": "orange",
+                "offers": [
+                {
+                    "resource": "T",
+                    "count": 1
+                }],
+                "wants": [
+                {
+                    "resource": "S",
+                    "count": 1
+                },
+                {
+                    "resource": "G",
+                    "count": 1
+                }]
+            }],
+            "played": "2020-07-19T08:04:12.357552+00:00"
+        }
+    ]
+}

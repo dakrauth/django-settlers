@@ -12,6 +12,17 @@ from .forms import SubmitError, SettlersTurnForm, SettlersNewGameForm, SettlersA
 from . import __version__ as VERSION
 
 
+def api(request, pk):
+    user = request.user
+    return http.JsonResponse({
+        'pk': pk,
+        'user': {
+            'id': user.id,
+            'name': user.username
+        } if user.is_authenticated else None
+    })
+
+
 class SettlersMixin:
 
     @cached_property
@@ -31,6 +42,10 @@ class SettlersMixin:
 
 class RandomView(SettlersMixin, TemplateView):
     template_name = 'settlers/random.html'
+
+
+class SeafarersView(SettlersMixin, TemplateView):
+    template_name = 'settlers/seafarers.html'
 
 
 class ListingView(SettlersMixin, TemplateView):
@@ -164,7 +179,7 @@ class GameDetailView(BaseGameView):
         return self.form_invalid(form)
 
     def get_context_data(self, **kwargs):
-        return super().get_context_data(game=self.object.game, **kwargs)
+        return super().get_context_data(game=self.object.game_data, **kwargs)
 
     def get(self, request, *args, **kwargs):
         self.start_next_turn()

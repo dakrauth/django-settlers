@@ -91,20 +91,20 @@ class Harbor {
 }
 
 export class Board {
-    constructor(init, config) {
-        this.init = init;
+    constructor(layout, config) {
+        this.layout = layout;
         this.config = config;
         this.hexes = [];
         this.hexMatrix = [];
         this.hexIds = {};
 
-        this.harbors = Harbor.factory(init.harbors);
+        this.harbors = Harbor.factory(layout.harbors);
         this.chits = {
             2: [], 3: [],  4: [],  5: [],  6: [],
             8: [], 9: [], 10: [], 11: [], 12: []
         };
         let humanId = 1;
-        let grid = init.grid;
+        let grid = layout.grid;
         if(Array.isArray(grid)) {
             grid = grid.flat();
             if(grid[0].length === 1) {
@@ -210,17 +210,22 @@ export class Board {
 
         this.randomizeChits(layout.chits);
         this.randomizeHarbors(Object.values(Harbor.factory(layout.harbors)));
-        let data = this.initialData();
+        let data = this.export();
         data.actual = {harbors: Utils.deepCopy(Object.values(this.harbors))};
         console.log()
     }
-    initialData() {
-        let data = Utils.deepCopy(this.init);
-        data.grid = this.hexes.map(h => h.resource + h.chit.toString(16)).join("");
-        return data;
+    export() {
+        return {
+            layout: this.layout.name,
+            grid: this.hexes.map(h => h.resource + h.chit.toString(16)).join(""),
+            harbors: Object.values(this.harbors).reduce((acc, h) => {
+                acc[h.id] = h.resource;
+                return acc;
+            }, {})
+        };
     }
     toJSON() {
-        return JSON.stringify({'init': this.initialData()});
+        return JSON.stringify(this.export());
     }
     randomizeHarbors(harbors) {
         let conflict = false;

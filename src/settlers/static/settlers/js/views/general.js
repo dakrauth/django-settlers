@@ -4,7 +4,19 @@ import { Resource } from '../common.js';
 
 export class GeneralView {
     constructor() {
-        $$('.tabs a').forEach(e => e.addEventListener('click', this.handleTabs.bind(this))); 
+        $$('.tabs a').forEach(e => e.addEventListener('click', this.handleTabs.bind(this)));
+        $$('.notification > .delete').forEach(e => e.addEventListener('click', evt => {
+            evt.target.parentElement.remove();
+        }));
+        this.intlOptions = new Intl.DateTimeFormat('en-US', {
+            weekday: 'long',
+            timeZoneName: 'short',
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: 'numeric',
+            minute: 'numeric'
+        });
     }
     handleTabs(evt) {
         const el = evt.currentTarget;
@@ -47,14 +59,14 @@ export class GeneralView {
         let headers = [];
         let cells = [];
         game.players.forEach(p => {
-            headers.push(`<th>${p.name} &middot; ${p.color}</th>`);
+            headers.push(`<th class="player-${p.color}">${p.name} &middot; ${p.color}</th>`);
 
             let points = game.pointsFor(p);
             let extras = [];
-            if(points.longestRoad === p.color) {
+            if(points.longestRoad) {
                 extras.push('LR');
             }
-            if(points.largestArmy === p.color) {
+            if(points.largestArmy) {
                 extras.push('LA');
             }
             if(extras.length) {
@@ -81,12 +93,15 @@ export class GeneralView {
         $('.status').innerHTML = html;
     }
     showTurnInfo(turn, player, history) {
-        let when = new Date(turn.played);
+        const when = this.intlOptions.format(new Date(turn.played))
         let rows = [
-            `<p><strong>Previous turn (#${turn.index + 1})</strong><br>
-            ${player.color} (${player.name})<br>
-            Rolled &middot; ${turn.roll}<br>
-            ${when.toString()}</p>`,
+            `<p>
+                <strong>Previous turn</strong>
+                <span class="smaller">(#${turn.index + 1})</span>
+                <br>
+                <em class="smaller">${when}</em><br>
+                <span class="player-pill player-${player.color}">${player.color}</span> (${player.name}) rolled &middot; ${turn.roll}<br>
+            </p>`,
 
         ];
         if(history && history.length) {

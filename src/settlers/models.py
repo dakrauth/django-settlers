@@ -66,6 +66,14 @@ class Settlers(models.Model):
                 return player
 
     @property
+    def game_data(self):
+        return dict(
+            self.game,
+            created=self.created,
+            updated=self.updated
+        )
+    
+    @property
     def stage(self):
         n_players = len(self.game['players'])
         n_turns = len(self.game['turns'])

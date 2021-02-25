@@ -1,101 +1,97 @@
 {% extends "settlers/base.html" %}
-{% load static %}<!DOCTYPE html>
+{% load static %}
 {% block settlers_content %}
     <div class="app container">
-        {% if messages %}{% for message in messages %}
-        <div class="notification {% if message.tags %}is-{{ message.tags }}{% endif %}">
-            <button class="delete"></button> {{ message }}
+        <div class="canvas">
+            <canvas id="app" width="660" height="690"></canvas>
         </div>
-        {% endfor %}{% endif %}
-        <canvas id="app" width="660" height="690"></canvas>
-        <nav class="pagination is-small is-centered is-rounded" role="navigation" aria-label="pagination">
-            <ul class="controls pagination-list">
-                <li><a title="previous" class="pagination-link" data-value="prev"><i class="fas fa-chevron-left"></i></a></li>
-                <li><a title="start" class="pagination-link" data-value="start"><i class="fas fa-backward"></i></a></li>
-                <li><a title="undo" class="pagination-link" data-value="undo"><i class="fas fa-undo"></i></a></li>
-                <li><a title="current" class="pagination-link" data-value="end"><i class="fas fa-forward"></i></a></li>
-                <li><a title="next" class="pagination-link" data-value="next"><i class="fas fa-chevron-right"></i></a></li>
-            </ul>
-        </nav>
-        <div class="tabs is-centered">
-            <ul>
-                <li data-tab="play-tab" class="is-active hidden">
-                    <a>
-                        <span class="icon is-small"><i class="fas fa-dice" aria-hidden="true"></i></span>
-                        <span>Play</span>
-                    </a>
-                </li>
-                <li data-tab="details-tab">
-                    <a>
-                        <span class="icon is-small"><i class="fas fa-binoculars" aria-hidden="true"></i></span>
-                        <span>Details</span>
-                    </a>
-                </li>
-                <li data-tab="status-tab">
-                    <a>
-                        <span class="icon is-small"><i class="fas fa-clipboard"></i></span>
-                        <span>Status</span>
-                    </a>
-                </li>
-                <li data-tab="help-tab">
-                    <a>
-                        <span class="icon is-small"><i class="fas fa-info-circle" aria-hidden="true"></i></span>
-                        <span>Help</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <section class="tab details-tab hidden">
-            <div id="info" class="content"></div>
-        </section>
-        <section class="tab status-tab hidden">
-            <div class="status"></div>
-        </section>
-        <section class="tab play-tab">
-            {% if not user.is_authenticated %}
-            <p class="has-text-centered">
-                <a class="button is-small is-link" href="{% url 'account-login' %}?next={{ request.path }}">Log in</a>
-            </p>
-            {% endif %}
+        <div>
+            {% if messages %}{% for message in messages %}
+            <div class="notification {% if message.tags %}is-{{ message.tags }}{% endif %}">
+                <button class="delete"></button> {{ message }}
+            </div>
+            {% endfor %}{% endif %}
+            <nav class="pagination is-small is-centered is-rounded" role="navigation" aria-label="pagination">
+                <ul class="controls pagination-list">
+                    <li><a title="previous" class="pagination-link" data-value="prev"><i class="fas fa-chevron-left"></i></a></li>
+                    <li><a title="start" class="pagination-link" data-value="start"><i class="fas fa-backward"></i></a></li>
+                    <li><a title="undo" class="pagination-link" data-value="undo"><i class="fas fa-undo"></i></a></li>
+                    <li><a title="current" class="pagination-link" data-value="end"><i class="fas fa-forward"></i></a></li>
+                    <li><a title="next" class="pagination-link" data-value="next"><i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+            </nav>
+            <div class="tabs is-centered">
+                <ul>
+                    <li data-tab="play-tab" class="is-active hidden">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-dice" aria-hidden="true"></i></span>
+                            <span>Play</span>
+                        </a>
+                    </li>
+                    <li data-tab="status-tab">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-clipboard"></i></span>
+                            <span>Status</span>
+                        </a>
+                    </li>
+                    <li data-tab="help-tab">
+                        <a>
+                            <span class="icon is-small"><i class="fas fa-info-circle" aria-hidden="true"></i></span>
+                            <span>Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <section class="tab status-tab hidden">
+                <div class="status"></div>
+                <div id="info" class="content"></div>
+            </section>
+            <section class="tab play-tab">
+                {% if not user.is_authenticated %}
+                <p class="has-text-centered">
+                    <a class="button is-small is-link" href="{% url 'account-login' %}?next={{ request.path }}">Log in</a>
+                </p>
+                {% endif %}
 
-            <div class="welcome content"></div>
-            <div class="hidden" id="trade-response">
-                {% include "settlers/includes/trade_response.html" %}
-            </div>
-            <div class="setup hidden">
-                {% include "settlers/includes/setup.html" %}
-            </div>
-            <div class="turn hidden">
-                <button class="button is-primary is-small roll-btn">Roll</button>
-                <div class="actions hidden">
-                    <div class="with-robber hidden">{% include "settlers/includes/robber.html" %}</div>
-                    <div class="no-robber hidden">
-                        {% if game.isSync %}
-                        {% include "settlers/includes/trade_offer_sync.html" %}
-                        {% else %}
-                        {% include "settlers/includes/trade_offer.html" %}
-                        {% endif %}
-                        {% include "settlers/includes/build.html" %}
-                        {% include "settlers/includes/development.html" %}
-                        <p class="has-text-centered">
-                            <button id="save" class="button is-small is-primary">Save</button>
-                        </p>
+                <div class="welcome content"></div>
+                <div class="hidden" id="trade-response">
+                    {% include "settlers/includes/trade_response.html" %}
+                </div>
+                <div class="setup hidden">
+                    {% include "settlers/includes/setup.html" %}
+                </div>
+                <div class="turn hidden">
+                    <button class="button is-primary is-small roll-btn">Roll</button>
+                    <div class="actions hidden">
+                        <div class="with-robber hidden">{% include "settlers/includes/robber.html" %}</div>
+                        <div class="no-robber hidden">
+                            {% if game.isSync %}
+                            {% include "settlers/includes/trade_offer_sync.html" %}
+                            {% else %}
+                            {% include "settlers/includes/trade_offer.html" %}
+                            {% endif %}
+                            {% include "settlers/includes/build.html" %}
+                            {% include "settlers/includes/development.html" %}
+                            <p class="has-text-centered">
+                                <button id="save" class="button is-small is-primary">Save</button>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section> <!-- play-tab -->
-        <section class="tab help-tab hidden">
-            {% include "settlers/includes/help.html" %}
-        </section>
-        <section class="debug-tab" style="margin-top: 1em">
-            <div><div id="debug" class="hidden"></div></div>
-        </section>
-        <form method="post" id="posting">
-            {% if form %}
-            {% csrf_token %}
-            {{ form }}
-            {% endif %}
-        </form>
+            </section> <!-- play-tab -->
+            <section class="tab help-tab hidden">
+                {% include "settlers/includes/help.html" %}
+            </section>
+            <section class="debug-tab" style="margin-top: 1em">
+                <div><div id="debug" class="hidden"></div></div>
+            </section>
+            <form method="post" id="posting">
+                {% if form %}
+                {% csrf_token %}
+                {{ form }}
+                {% endif %}
+            </form>
+        </div>
     </div>
 {% endblock settlers_content %}
 {% block settlers_application_javascript %}
@@ -103,5 +99,6 @@
 <script type="module">
     import { App } from '{% static "/settlers/js/app.js" %}';
     App.play();
+    App.check();
 </script>
 {% endblock settlers_application_javascript %}

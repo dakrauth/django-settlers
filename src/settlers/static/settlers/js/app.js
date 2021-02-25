@@ -37,17 +37,17 @@ const parseTradeOffer = function(str) {
 };
 
 class Controller {
-    constructor(status, cfg) {
-        this.cfg = cfg;
-        this.debug = cfg.debug;
+    constructor(status, config) {
+        this.config = config;
+        this.debug = config.debug;
         this.status = status;
         this.element = $('.app');
         this.isSync = !!status.isSync && true;
         
-        this.view = new CanvasView($('#app'), cfg);
+        this.view = new CanvasView($('#app'), config);
         this.formView = new FormView(this.element);
         this.generalView = new GeneralView();
-        this.game = new Game(status, cfg);
+        this.game = new Game(status, config);
         this.currentTurn = null;
         this.tradeOffers = [];
         this.history = {};
@@ -77,50 +77,24 @@ class Controller {
         let resourceBits = Array.from('BOGST').map(r => [r, Resource[r].name]);
         $$('.resource-listing').forEach(el => this.formView.setOptions(el, resourceBits));
 
-        let playerBits = [];
-        this.game.players.forEach(p => {
-            if(p.id != this.activePlayer.id) {
-                playerBits.push(p);
-            }
+        for(const [selector, event, listener] of [
+            ['select[name=knHex]', 'change', 'handleKnightHexChange'],
+            ['.robber-hex', 'change', 'handleRobberHexChange'],
+            ['select[name=development-card]', 'change', 'handleDevelopmentCardSelection'],
+            ['input[name="tradeBy"]', 'change', 'handleInitTrade'],
+            ['.controls a', 'click', 'handleNav'],
+            ['.development-buy-btn', 'click', 'handleDevelopmentBuy'],
+            ['.select-group button', 'click', 'validateSelectGroup'],
+            ['#player-trade button', 'click', this.isSync ? 'handleSyncPlayerTrade' : 'handlePlayerTrade']
+        ]) {
+            this.addEventListeners(selector, event, listener);
+        }
+    }
+    addEventListeners(selector, event, listener) {
+        $$(selector).forEach(el => {
+            let fn = this[listener];
+            el.addEventListener(event, fn.bind(this))
         });
-        playerBits = playerBits.map(p => [p.color, p.toString()]);
-        playerBits.push(['N/A', 'Nobody']);
-        $$('.player-listing').forEach(el => this.formView.setOptions(el, playerBits));
-
-        $('.robber-hex').addEventListener('change', this.handleRobberHexChange.bind(this));
-        $('select[name=development-card]').addEventListener('change', e => {
-            let value = e.target.value;
-            if(value === 'VP') {
-                this.playVictoryPoint();
-            }
-            else {
-                Utils.show('.development-' + value);
-            }
-        });
-
-        $$('input[name="tradeBy"]').forEach(el => {
-            el.addEventListener('change', this.handleInitTrade.bind(this))
-        });
-
-        $$('.controls a').forEach(el => {
-            el.addEventListener('click', this.handleNav.bind(this));
-        });
-
-        $('.development-buy-btn').addEventListener('click', this.handleDevelopmentBuy.bind(this));
-
-        $$('.select-group button').forEach(el => {
-            el.addEventListener('click', this.validateSelectGroup.bind(this));
-        });
-
-        $$('.notification > .delete').forEach(e => e.addEventListener('click', evt => {
-            evt.target.parentElement.remove();
-        }));
-
-        $('#player-trade button').addEventListener(
-            'click',
-            this.isSync ? this.handleSyncPlayerTrade.bind(this)
-                        : this.handlePlayerTrade.bind(this)
-        );
     }
     showTradeOfferStatus() {
         const tradeOffers = this.status.tradeOffers;
@@ -188,7 +162,7 @@ class Controller {
             }
         }
 
-        $('#save-trade').addEventListener('click', this.handleTradeResponse.bind(this));
+        this.addEventListeners('#save-trade', 'click', 'handleTradeResponse');
         Utils.show('#trade-response');
     }
     showWelcome() {
@@ -201,12 +175,12 @@ class Controller {
                 it is your turn</p>`;
             if(this.game.isInitStage) {
                 this.initStageTurn();
-                $('#save-init').addEventListener('click', this.handleSave.bind(this));
+                this.addEventListeners('#save-init', 'click', 'handleSave');
                 Utils.show('.setup');
             }
             else {
                 $('.roll-btn', this.element).addEventListener('click', this.handleRoll.bind(this));
-                $('#save').addEventListener('click', this.handleSave.bind(this));
+                this.addEventListeners('#save', 'click', 'handleSave');
                 Utils.show('.turn');
             }
         }
@@ -294,20 +268,18 @@ class Controller {
         form.response.value = JSON.stringify(tradeResponse);
         form.submit();
     }
-    handleRobberHexChange(evt) {
-        let hex = this.game.board.getHex(evt.target.value);
+    populateEligibleVictims(location, listing) {
+        let hex = this.game.board.getHex(location);
         let colors = new Set(
             hex.vertexIds
-                .map(id => id ? this.game.board.vertices[id].color : null)
-                .filter(o => o)
+               .map(id => id ? this.game.board.vertices[id].color : null)
+               .filter(o => o && o !== this.activePlayer.color)
         );
         let data = [];
         for(const color of colors) {
-            if(color !== this.activePlayer.color) {
-                const player = this.game.getPlayer(color);
-                if(player.resources.count) {
-                    data.push([color, `${player.toString()}`]);
-                }
+            const player = this.game.getPlayer(color);
+            if(player.resources.count) {
+                data.push([color, `${player.toString()}`]);
             }
         }
         if(data.length === 0) {
@@ -316,7 +288,22 @@ class Controller {
         else if(data.length > 1) {
             data.unshift(['', '-- victim --']);
         }
-        this.formView.setOptions($('.victim-listing'), data);
+        this.formView.setOptions($(listing), data);
+    }
+    handleDevelopmentCardSelection(evt) {
+        let value = evt.target.value;
+        if(value === 'VP') {
+            this.playVictoryPoint();
+        }
+        else {
+            Utils.show(`.development-${value}`);
+        }
+    }
+    handleKnightHexChange(evt) {
+        this.populateEligibleVictims(evt.target.value, 'select[name="knVictim"]');
+    }
+    handleRobberHexChange(evt) {
+        this.populateEligibleVictims(evt.target.value, '.victim-listing');
     }
     handleInitTrade(evt) {
         let value = evt.target.value;
@@ -540,7 +527,7 @@ class Controller {
     }
     handleKN(data, elements) {
         let hex = parseInt(data.knHex);
-        let victim = data.knVictim === 'N/A' ? null : this.game.player(data.knVictim);
+        let victim = data.knVictim === 'N/A' ? null : this.game.getPlayer(data.knVictim);
         this.playDevelopment('KN',{
             hex: hex,
             resource: victim === null ? null : victim.resources.pickRandom(),
@@ -682,9 +669,17 @@ const allClear = function() {
 };
 
 export const App = {
+    check: function() {
+        fetch('/catan/api/4/', {
+            credentials: 'same-origin'
+        }).then(resp => resp.json()).then(data => {
+            console.log(data)
+        })
+    },
     play: function(options) {
         let json = $('#app-status').textContent;
         let status = JSON.parse(json);
+        console.log(status);
 
         let params = getParams();
         let config = {
@@ -705,8 +700,8 @@ export const App = {
             status.nextRoll = parseInt(params.roll);
         }
 
-        let cfg = makeConfig(config);
-        let ctrl = new Controller(status, cfg);
+        config = makeConfig(config);
+        let ctrl = new Controller(status, config);
         if(params.go) {
             $('.roll-btn').click();
         }
@@ -726,13 +721,28 @@ export const App = {
         }
         console.timeEnd('randomize');
     },
+    seafarers() {
+        let params = getParams();
+        let layout = Layouts['seafarers'];
+        let config = makeConfig({
+            debug: params.hasOwnProperty('debug'),
+            showEmpty: params.hasOwnProperty('empty'),
+            boardWidth: layout.grid[0].length,
+            boardHeight: layout.grid.length,
+            noHexNumbers: true
+        });
+        
+        window.bd = new Board(layout, config);
+        window.vw = new CanvasView($('#app'), config);
+
+    },
     random(callback) {
         const randomize = function() {
             let layoutOption = $('[type="radio"]:checked');
             let layoutName = layoutOption ? layoutOption.value : 'standard34';
             let layout = Layouts[layoutName];
             let params = getParams();
-            let cfg = makeConfig({
+            let config = makeConfig({
                 debug: params.hasOwnProperty('debug'),
                 showEmpty: params.hasOwnProperty('empty'),
                 boardWidth: layout.grid.length,
@@ -740,8 +750,8 @@ export const App = {
                 noHexNumbers: true
             });
             
-            window.bd = new Board(layout, cfg);
-            window.vw = new CanvasView($('#app'), cfg);
+            window.bd = new Board(layout, config);
+            window.vw = new CanvasView($('#app'), config);
 
             window.bd.randomize(layout);
             window.vw.renderBoard(window.bd, false);

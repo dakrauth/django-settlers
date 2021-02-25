@@ -130,21 +130,25 @@ class Player {
         return this.devCards.VP;
     }
     pointsFor(game) {
-        let pts = this.playedConstructs.filter(e => e.type !== 'road').length;
-        let result = {build: pts};
+        let results = {
+            total: 0,
+            city: this.originalConstructs.city - this.constructs.city,
+            settlement: this.originalConstructs.settlement - this.constructs.settlement,
+            road: this.originalConstructs.road - this.constructs.road
+        };
+        results.total += results.city * 2 + results.settlement;
+
         if(game.longestRoad === this.color) {
-            pts += 2;
-            result.longestRoad = 2;
+            results.total += 2;
+            results.longestRoad = true;
         }
         if(game.largestArmy === this.color) {
-            pts += 2;
-            result.largestArmy = 2;
+            results.total += 2;
+            results.largestArmy = true;
         }
-        result.total = pts;
-        result.grandTotal = pts + this.devCards.VP;
-        return result;
+        results.grandTotal = results.total + this.devCards.VP;
+        return results;
     }
-
 }
 
 class Players {
