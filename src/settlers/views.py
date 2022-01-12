@@ -1,6 +1,6 @@
 from django import http
 from django.contrib import messages
-from django.contrib.auth.mixins import AccessMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.functional import cached_property
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, get_object_or_404
@@ -58,19 +58,19 @@ class ListingView(SettlersMixin, TemplateView):
         )
 
 
-class NewView(AccessMixin, SettlersMixin, CreateView):
-    model = Settlers
-    template_name = 'settlers/new.html'
-    form_class = SettlersNewGameForm
+class SettlerLoginRequiredMixin(LoginRequiredMixin):
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-
         if not self.settlers_profile:
             return http.HttpResponse(status=403)
 
         return super().dispatch(request, *args, **kwargs)
+
+
+class NewView(SettlerLoginRequiredMixin, SettlersMixin, CreateView):
+    model = Settlers
+    template_name = 'settlers/new.html'
+    form_class = SettlersNewGameForm
 
 
 class BaseGameView(SettlersMixin, UpdateView):
@@ -104,9 +104,6 @@ class BaseGameView(SettlersMixin, UpdateView):
             return False
 
         return profile.settlers_set.filter(pk=self.object.pk).exists()
-
-
-class GameDetailView(BaseGameView):
 
     def get_form_class(self):
         if self.is_user_active_player:
@@ -195,7 +192,10 @@ class GameDetailView(BaseGameView):
             return http.HttpResponse(status=exc.args[0])
 
 
-class GameDemoView(GameDetailView):
+class GameDetailView(SettlerLoginRequiredMixin, BaseGameView):
+    pass
+
+class GameDemoView(BaseGameView):
 
     @cached_property
     def is_user_player(self):

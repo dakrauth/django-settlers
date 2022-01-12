@@ -7,8 +7,10 @@
             <span class="pl-2">Settlers Games</span>
         </h1>
         <p class="buttons mt-4">
+            {% if user.is_authenticated %}
             <a class="button is-rounded is-link is-small" href="{% url 'settlers:new' %}">New</a>
-            <a class="button is-rounded is-link is-small" href="{% url 'settlers:detail' 1 %}">Demo</a>
+            {% endif %}
+            <a class="button is-rounded is-link is-small" href="{% url 'settlers:demo' %}">Demo</a>
             <a class="button is-rounded is-link is-small" href="{% url 'settlers:random' %}">Randomize</a>
         </p>
         <table class="table is-striped is-narrow is-fullwidth">
@@ -21,22 +23,26 @@
                 </tr>
             </thead>
             <tbody>
-            {% for g in games %}
-            <tr>
-            {% if g.id != 1 %}
-                <td>Game #{{ g.id }}</td>
-                <td>
-                    {% for player in g.game.players %}
-                    {{ player.name }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
-                <td>{{ g.updated }}</td>
-                <td><a class="button is-rounded is-link is-small" href="{{ g.get_absolute_url }}">View</a></td>
-            </tr>
-            {% endif %}
-            {% empty %}
-            <tr><td colspan="2">No games</td></tr>
-            {% endfor %}
+                {% if user.is_authenticated %}
+                {% for g in games %}
+                <tr>
+                {% if g.id != 1 %}
+                    <td>Game #{{ g.id }}</td>
+                    <td>
+                        {% for player in g.game.players %}
+                        {{ player.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ g.updated }}</td>
+                    <td><a class="button is-rounded is-link is-small" href="{{ g.get_absolute_url }}">View</a></td>
+                </tr>
+                {% endif %}
+                {% empty %}
+                <tr><td colspan="2">No games</td></tr>
+                {% endfor %}
+                {% else %}
+                <tr><td colspan="4"><em>Only registered users can view games</em></td></tr>
+                {% endif %}
             </tbody>
     </table>
     </section>
