@@ -23,7 +23,7 @@
 {% block settlers_application_javascript %}
     {{ status|json_script:"app-status" }}
     <script type="module">
-        import { App } from '{% static "/settlers/js/app.js" %}'
-        let catan = App.random();
+        import { random } from '{% static "/settlers/js/random.js" %}'
+        random();
     </script>
 {% endblock settlers_application_javascript %}

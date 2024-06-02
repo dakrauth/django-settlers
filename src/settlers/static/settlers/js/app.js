@@ -656,14 +656,6 @@ class Controller {
     }
 }
 
-const getParams = function() {
-        let params = new URLSearchParams(window.location.search);
-        return Array.from(params.entries()).reduce(function(acc, cur) {
-            acc[cur[0]] = cur[1] || true;
-            return acc;
-        }, {});
-};
-
 const allClear = function() {
     $('#app').classList.add('good');
 };
@@ -681,7 +673,7 @@ export const App = {
         let status = JSON.parse(json);
         console.log(status);
 
-        let params = getParams();
+        let params = Utils.getURLParams();
         let config = {
             debug: params.hasOwnProperty('debug'),
             showEmpty: params.hasOwnProperty('empty')
@@ -712,56 +704,5 @@ export const App = {
         window.vw = ctrl.view;
         window.ctx = vw.ctx;
         allClear()
-    },
-    testRandom(count=10) {
-        console.time('randomize');
-        for(let i = 0; i < count; i++) {
-            let rb = Layouts.randomBoard().flat().join('');
-            // console.log(i, rb);
-        }
-        console.timeEnd('randomize');
-    },
-    seafarers() {
-        let params = getParams();
-        let layout = Layouts['seafarers'];
-        let config = makeConfig({
-            debug: params.hasOwnProperty('debug'),
-            showEmpty: params.hasOwnProperty('empty'),
-            boardWidth: layout.grid[0].length,
-            boardHeight: layout.grid.length,
-            noHexNumbers: true
-        });
-        
-        window.bd = new Board(layout, config);
-        window.vw = new CanvasView($('#app'), config);
-
-    },
-    random(callback) {
-        const randomize = function() {
-            let layoutOption = $('[type="radio"]:checked');
-            let layoutName = layoutOption ? layoutOption.value : 'standard34';
-            let layout = Layouts[layoutName];
-            let params = getParams();
-            let config = makeConfig({
-                debug: params.hasOwnProperty('debug'),
-                showEmpty: params.hasOwnProperty('empty'),
-                boardWidth: layout.grid.length,
-                boardHeight: layout.grid[0].length,
-                noHexNumbers: true
-            });
-            
-            window.bd = new Board(layout, config);
-            window.vw = new CanvasView($('#app'), config);
-
-            window.bd.randomize(layout);
-            window.vw.renderBoard(window.bd, false);
-            if(callback) {
-                callback(window.bd);
-            }
-        }
-
-        $('#randomize').addEventListener('click', randomize);
-        randomize();
-        allClear();
     }
 };

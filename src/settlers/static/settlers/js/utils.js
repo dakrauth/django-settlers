@@ -78,6 +78,13 @@ const Utils = {
             el.firstChild.remove();
         }
     },
+    getURLParams: function() {
+            let params = new URLSearchParams(window.location.search);
+            return Array.from(params.entries()).reduce(function(acc, cur) {
+                acc[cur[0]] = cur[1] || true;
+                return acc;
+            }, {});
+    },
     pointInPolygon: function (p, polygon) {
         let isInside = false;
         let minX = polygon[0].x, maxX = polygon[0].x;
