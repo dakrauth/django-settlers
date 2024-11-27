@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-settlers"
+dynamic = ["version"]
+description = "SA simple async Settlers implementation."
+license = { file = "LICENSE" }
+readme = { file = "README.md", content-type = "text/x-markdown" }
+keywords = ["django", "game", "settlers", "catan"]
+authors = [
+    { name = "David Krauth", email = "dakrauth@gmail.com" },
+]
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Games/Entertainment :: Board Games",
+    "Topic :: Games/Entertainment :: Turn Based Strategy"
+]
+
+dependencies = [
+    "Django>=4.2,<5.2",
+    "djangorestframework>=3.10.3",
+    "django_extensions>=2.2.9",
+    "django-vanilla-views==3.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/dakrauth/django-settlers"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "coverage",
+    "pytest-django",
+    "pytest-cov",
+]
+dev = [
+    "tox",
+    "build",
+    "ipython",
+    "ipdb",
+    "twine",
+    "ruff",
+    "django-extensions",
+    "pytest-sugar",
+    "pytest-clarity"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = [
+    "settlers",
+    "settlers.migrations",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "settlers.__version__"}
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+cache-dir = ".dev/ruff"
+line-length = 100
+indent-width = 4
+
+[tool.ruff.lint]
+ignore = ["E741"]
