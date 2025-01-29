@@ -53,10 +53,10 @@ const Resource = (function() {
         3:  {emoji: '❓', type: 'hbr', bgColor: '#eee',    fgColor: '#000',  descr: '', name: '3:1'},
 
         B:  {emoji: '🧱', type: 'res', bgColor: '#ae6020', fgColor: '#fff',  descr: '', name: 'Brick'}, // cf7e65
-        O:  {emoji: '🗿', type: 'res', bgColor: '#9dacb7', fgColor: '#fff',  descr: '', name: 'Ore'}, // 7a7a7a 6f6a61
+        O:  {emoji: '🪨', type: 'res', bgColor: '#9dacb7', fgColor: '#fff',  descr: '', name: 'Ore'}, // 7a7a7a 6f6a61
         S:  {emoji: '🐑', type: 'res', bgColor: '#9fdd8c', fgColor: '#000',  descr: '', name: 'Sheep'}, // c3f4b3
         T:  {emoji: '🌲', type: 'res', bgColor: '#278a5b', fgColor: '#fff',  descr: '', name: 'Tree'}, // 6da24a
-        G:  {emoji: '🌽', type: 'res', bgColor: '#fee5ac', fgColor: '#000',  descr: '', name: 'Grain'}, // fee5ac f0dc82 f5deb3
+        G:  {emoji: '🌾', type: 'res', bgColor: '#fee5ac', fgColor: '#000',  descr: '', name: 'Grain'}, // fee5ac f0dc82 f5deb3
 
         D:  {type: 'res', bgColor: '#c5994b', fgColor: '#fff',  descr: '', name: 'Desert'}, // b7a458
         W:  {type: 'res', bgColor: '#02a4d3', fgColor: '#fff',  descr: '', name: 'Water'},

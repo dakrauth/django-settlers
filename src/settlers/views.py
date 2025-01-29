@@ -9,7 +9,7 @@ from vanilla import TemplateView, DetailView, UpdateView, CreateView
 
 from .models import Settlers, SettlersProfile
 from .forms import SubmitError, SettlersTurnForm, SettlersNewGameForm, SettlersAcceptTradeForm
-from . import __version__ as VERSION
+from . import get_version
 
 
 def api(request, pk):
@@ -36,8 +36,7 @@ class SettlersMixin:
         return None
 
     def get_context_data(self, **kwargs):
-        version_string = '.'.join(str(i) for i in VERSION)
-        return super().get_context_data(version=version_string, **kwargs)
+        return super().get_context_data(version=get_version(), **kwargs)
 
 
 class RandomView(SettlersMixin, TemplateView):
